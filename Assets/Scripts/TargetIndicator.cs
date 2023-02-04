@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TargetIndicator : MonoBehaviour
 {
+    public bool visualSetting=false;
     private MeshRenderer visual;
 
     // Start is called before the first frame update
@@ -20,7 +21,7 @@ public class TargetIndicator : MonoBehaviour
             visual = GetComponent<MeshRenderer>();
         }
         transform.localPosition = newPos;
-        visual.enabled = true;
+        visual.enabled = visualSetting;
     }
 
     public void Hide()
