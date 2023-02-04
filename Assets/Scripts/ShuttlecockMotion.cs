@@ -19,8 +19,8 @@ public class ShuttlecockMotion : MonoBehaviour
     private float horizontalCoefficient = 1f;
     private float verticalCoefficient = 1f;
 
-    private const float coefficientMin = .25f;
-    private const float coefficientMax = .75f;
+    private const float coefficientMin = 0.01f;
+    private const float coefficientMax = 0.5f;
     private const float rotationSpeed = 0.25f;
 
     // Start is called before the first frame update
@@ -36,7 +36,7 @@ public class ShuttlecockMotion : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (moving)
         {
