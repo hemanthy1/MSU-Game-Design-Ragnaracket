@@ -9,7 +9,8 @@ public class CameraController : MonoBehaviour
     GameObject player;
     GameObject playArea;
     Mesh playAreaMesh;
-    Bounds bounds;
+    GameObject LeftSide;
+    GameObject RightSide;
 
     // Start is called before the first frame update
     void Start()
@@ -17,8 +18,9 @@ public class CameraController : MonoBehaviour
         playerCamera = GetComponent<Camera>();
         player = GameObject.Find("Player");
         playArea = GameObject.Find("PlayArea");
-        playAreaMesh = playArea.GetComponent<MeshFilter>().mesh;
-        bounds = playAreaMesh.bounds;
+        LeftSide = GameObject.Find("LeftCollider");
+        RightSide = GameObject.Find("RightCollider");
+        
     }
 
     // Update is called once per frame
@@ -29,13 +31,11 @@ public class CameraController : MonoBehaviour
 
     void CameraPositioning()
     {
-        float boundsX = playArea.transform.localScale.x * bounds.size.x;
-        //float boundsY = playArea.transform.localScale.y * bounds.size.y;
-        //float boundsZ = playArea.transform.localScale.z * bounds.size.z;
-        //Need to find some way to get the length of the playarea plane
-        if (Mathf.Abs(player.transform.position.x) > boundsX) 
+        
+        //Use the collider's position to find the edges and do the math from there. 
+        if (Mathf.Abs(player.transform.position.x) > 0) 
         {
-            MoveCamera(player.transform.position.x - boundsX * Time.deltaTime);
+            MoveCamera(player.transform.position.x - 0 * Time.deltaTime);
         }
     }
 
