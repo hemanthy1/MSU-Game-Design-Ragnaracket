@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer()
     {
-        Vector3 movement = new Vector3(move.x, 0f, 0f);
+        Vector3 movement = new Vector3(0f, 0f, move.x);
 
         transform.Translate(movement * speed * Time.deltaTime, Space.World);
     }

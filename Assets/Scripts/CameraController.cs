@@ -5,11 +5,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    float speed = 14.5f;
-    Camera playerCamera;
+    float speed = 6.0f;
     GameObject player;
-    GameObject playArea;
-    Mesh playAreaMesh;
     GameObject LeftSide;
     GameObject RightSide;
     float playAreaLength;
@@ -18,13 +15,11 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        playerCamera = GetComponent<Camera>();
+        //transform.Translate(15, -1, 0);
         player = GameObject.Find("Player");
-        playArea = GameObject.Find("PlayArea");
         LeftSide = GameObject.Find("LeftCollider");
         RightSide = GameObject.Find("RightCollider");
-        playAreaLength = Mathf.Abs(LeftSide.transform.position.x - RightSide.transform.position.x);
+        playAreaLength = Mathf.Abs(LeftSide.transform.position.z - RightSide.transform.position.z);
         playerBody = player.GetComponent<Rigidbody>();
 
 
@@ -41,10 +36,10 @@ public class CameraController : MonoBehaviour
     {
         
         //Use the collider's position to find the edges and do the math from there. 
-        if (player.transform.position.x > (playAreaLength/2 - 0.2f * (playAreaLength)) ||
-            player.transform.position.x < (-playAreaLength / 2 + 0.2f * (playAreaLength)))
+        if (player.transform.position.z > (playAreaLength/2 - 0.2f * (playAreaLength)) ||
+            player.transform.position.z < (-playAreaLength / 2 + 0.2f * (playAreaLength)))
         {
-            if (Mathf.Abs(playerBody.velocity.magnitude) > 17)
+            if (Mathf.Abs(playerBody.velocity.magnitude) > 20)
             {
                 MoveCamera(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             }
@@ -52,13 +47,13 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            MoveCamera(-transform.position.x, -transform.position.z);
+            MoveCamera(-transform.position.z, 0);
         }
     }
 
     void MoveCamera(float x, float y)
     {
-        Vector3 movementAmount = new Vector3(x, 0, y) * speed * Time.deltaTime;
+        Vector3 movementAmount = new Vector3(y, 0, x) * speed * Time.deltaTime;
         transform.Translate(movementAmount);
     }
 }
