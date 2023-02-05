@@ -11,11 +11,11 @@ public class PlayerJump : MonoBehaviour
     private Vector3 playerVelocity;
     private bool isGrounded;
 
-    [SerializeField] private float jumpHeight = 5.0f; 
+    [SerializeField] private float jumpHeight = 32.0f; 
 
     private bool jumpPressed = false;
 
-    private float gravity = -9.81f;
+    [SerializeField] private float gravity = -9.81f;
 
     // Start is called before the first frame update
     void Start()
