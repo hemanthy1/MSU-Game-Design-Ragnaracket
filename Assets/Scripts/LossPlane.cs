@@ -17,6 +17,7 @@ public class LossPlane : MonoBehaviour
         {
             other.transform.parent.position = respawnPoint.position;
             other.transform.parent.GetComponent<ShuttlecockMotion>().NextTarget();
+            other.transform.parent.GetComponent<ShuttlecockMotion>().ResetSpeed();
         }
     }
 }

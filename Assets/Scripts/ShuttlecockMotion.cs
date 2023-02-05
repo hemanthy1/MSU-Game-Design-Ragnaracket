@@ -15,6 +15,8 @@ public class ShuttlecockMotion : MonoBehaviour
 
     // Fields used to calculate movement
     public bool moving = true;
+    public float baseSpeed = 0.01f;
+    public float speedGrowth = 0.002f;
     private float speed = 0.01f;
     private float horizontalCoefficient = 1f;
     private float verticalCoefficient = 1f;
@@ -26,6 +28,7 @@ public class ShuttlecockMotion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speed = baseSpeed;
         if (targets.Count <= 0)
             moving = false;
         else
@@ -81,11 +84,27 @@ public class ShuttlecockMotion : MonoBehaviour
         midpoint = Vector3.Lerp(newTargetPoint, transform.position, 0.5f);
         targetPoint = newTargetPoint;
 
+        SpeedGrow();
         CalculateParameters();
     }
 
-    public void UpdateSpeed(float newSpeed)
+    public void SetSpeed(float newSpeed)
     {
         speed = newSpeed;
+    }
+
+    public void SpeedGrow()
+    {
+        speed += speedGrowth;
+    }
+
+    public void AddSpeed(float growth)
+    {
+        speed += growth;
+    }
+
+    public void ResetSpeed()
+    {
+        speed = baseSpeed;
     }
 }
