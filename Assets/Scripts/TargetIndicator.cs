@@ -20,7 +20,7 @@ public class TargetIndicator : MonoBehaviour
         {
             visual = GetComponent<MeshRenderer>();
         }
-        transform.localPosition = newPos;
+        transform.position = newPos;
         visual.enabled = visualSetting;
     }
 

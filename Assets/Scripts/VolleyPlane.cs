@@ -43,7 +43,7 @@ public class VolleyPlane : MonoBehaviour
     {
         float targetHorizontal = Random.Range(-halfWidth, halfWidth);
         float targetVertical = Random.Range(-halfHeight, halfHeight);
-        Vector3 localPoint = new Vector3(0, targetVertical, targetHorizontal);
+        Vector3 targetPoint = new Vector3(0, targetVertical, targetHorizontal) + transform.position;
 
         if (targetIndicator == null)
         {
@@ -51,8 +51,8 @@ public class VolleyPlane : MonoBehaviour
             targetIndicator = transform.Find("TargetIndicator").GetComponent<TargetIndicator>();
         }
 
-        targetIndicator.Show(localPoint);
-        return transform.position + localPoint;
+        targetIndicator.Show(targetPoint);
+        return targetPoint;
     }
 
     public float GetWidth()
