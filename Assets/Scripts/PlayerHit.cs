@@ -23,7 +23,7 @@ public class PlayerHit : MonoBehaviour
     }
     public void OnEnable()
     {
-        hitAction = new InputAction("Hit", InputActionType.Button, "<Keyboard>/y");
+        hitAction = new InputAction("Hit", InputActionType.Button, "<Mouse>/leftButton");
         hitAction.performed += OnHit;
         hitAction.Enable();
         
