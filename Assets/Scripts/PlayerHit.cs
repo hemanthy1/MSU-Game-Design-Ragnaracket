@@ -7,12 +7,12 @@ using UnityEngine.InputSystem;
 public class PlayerHit : MonoBehaviour
 {
     private InputAction hitAction;
-    
-
     private BoxCollider racketCollider;
+    private AudioSource swingSound;
 
     private void Start()
     {
+        swingSound = transform.Find("Audio").Find("Swing").GetComponent<AudioSource>();
         GameObject player= GameObject.FindWithTag("Player");
         if (player != null)
         {
@@ -33,6 +33,7 @@ public class PlayerHit : MonoBehaviour
     {
         if (context.performed)
         {
+            swingSound.Play();
             racketCollider.enabled = true;
             StartCoroutine(TurnOffAfterDelay(1f));
             Debug.Log("Hallelejuah Y is pressed!!!!");

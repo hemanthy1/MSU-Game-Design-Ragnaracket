@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Racket : MonoBehaviour
 {
-    private AudioSource sound;
+    private AudioSource hitSound;
     // Start is called before the first frame update
     void Start()
     {
-        sound = GetComponent<AudioSource>();
+        hitSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -16,7 +16,7 @@ public class Racket : MonoBehaviour
     {
         if (other.tag == "Shuttlecock")
         {
-            sound.Play();
+            hitSound.Play();
             other.transform.parent.GetComponent<ShuttlecockMotion>().NextTarget();
         }
     }
