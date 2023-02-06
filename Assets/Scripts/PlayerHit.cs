@@ -16,7 +16,7 @@ public class PlayerHit : MonoBehaviour
         GameObject player= GameObject.FindWithTag("Player");
         if (player != null)
         {
-            GameObject playerRacket = player.transform.Find("ProgrammerRacket").gameObject;
+            GameObject playerRacket = player.transform.Find("Racket").gameObject;
             racketCollider = playerRacket.GetComponent<BoxCollider>();
         }
        
