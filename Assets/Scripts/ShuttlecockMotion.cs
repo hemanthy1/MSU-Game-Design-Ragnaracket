@@ -107,4 +107,9 @@ public class ShuttlecockMotion : MonoBehaviour
     {
         speed = baseSpeed;
     }
+
+    public bool IsMoving()
+    {
+        return moving;
+    }
 }
