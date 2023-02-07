@@ -1483,7 +1483,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398439212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1042289279}
@@ -1937,7 +1937,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754075060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalPosition: {x: 0, y: 0, z: -0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1042289279}
@@ -2043,7 +2043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 84123545240483898, guid: c1cd9f8ddd9a316438d8ad171e3c68ce, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.3
+      value: 38.75
       objectReference: {fileID: 0}
     - target: {fileID: 84123545240483898, guid: c1cd9f8ddd9a316438d8ad171e3c68ce, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2084,6 +2084,10 @@ PrefabInstance:
     - target: {fileID: 84123545240483900, guid: c1cd9f8ddd9a316438d8ad171e3c68ce, type: 3}
       propertyPath: m_Name
       value: CameraController
+      objectReference: {fileID: 0}
+    - target: {fileID: 84123546356966654, guid: c1cd9f8ddd9a316438d8ad171e3c68ce, type: 3}
+      propertyPath: field of view
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2219195262631057196, guid: c1cd9f8ddd9a316438d8ad171e3c68ce, type: 3}
       propertyPath: m_Enabled

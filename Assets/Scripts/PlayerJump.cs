@@ -11,6 +11,8 @@ public class PlayerJump : MonoBehaviour
     private Vector3 playerVelocity;
     private bool isGrounded;
 
+    private bool isJumpReleased;
+
     [SerializeField] private float jumpHeight = 32.0f; 
 
     private bool jumpPressed = false;
@@ -32,10 +34,16 @@ public class PlayerJump : MonoBehaviour
     void MovementJump()
     {
         isGrounded = characterController.isGrounded;
+        isJumpReleased = Input.GetButtonUp("Jump");
         //If on the ground, stop the vertical movement
         if (isGrounded)
         {
             playerVelocity.y = 0.0f;
+        }
+
+        if (isJumpReleased && playerVelocity.y > 0.0f)
+        {
+            playerVelocity.y = 0;
         }
 
         if (jumpPressed && isGrounded)
