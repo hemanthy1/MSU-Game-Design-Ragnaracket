@@ -8,6 +8,19 @@ public class PlayerController : MonoBehaviour
     public float speed;
     private Vector2 move;
 
+    private float activeMoveSpeed;
+    public float dashSpeed;
+
+    public float dashLength = 0.5f, dashCooldown = 1f;
+
+    private float dashCounter;
+    private float dashCoolCounter;
+
+    private void Start()
+    {
+        activeMoveSpeed = speed;
+    }
+
     private void Awake()
     {
 
@@ -20,6 +33,9 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer()
     {
+
+     
+
         Vector3 movement = new Vector3(0f, 0f, move.x);
 
         transform.Translate(movement * speed * Time.deltaTime, Space.World);
@@ -29,5 +45,34 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         MovePlayer();
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.ReadValueAsButton())
+        {
+            if (dashCoolCounter <= 0 && dashCounter <= 0)
+            {
+                activeMoveSpeed = dashSpeed;
+                dashCounter = dashLength;
+            }
+        }
+
+        if (dashCounter > 0)
+        {
+            dashCounter -= Time.deltaTime;
+
+            if (dashCounter <= 0)
+            {
+                activeMoveSpeed = speed;
+                dashCoolCounter = dashCooldown;
+            }
+        }
+
+
+        if (dashCoolCounter > 0)
+        {
+            dashCoolCounter -= Time.deltaTime;
+        }
     }
 }

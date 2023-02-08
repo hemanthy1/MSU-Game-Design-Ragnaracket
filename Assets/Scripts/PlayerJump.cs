@@ -19,6 +19,8 @@ public class PlayerJump : MonoBehaviour
 
     [SerializeField] private float gravity = -9.81f;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,7 +60,7 @@ public class PlayerJump : MonoBehaviour
 
     public void OnJump()
     {
-        Debug.Log("Jump pressed");
+        //Debug.Log("Jump pressed");
         
         if (characterController.velocity.y == 0)
         {
