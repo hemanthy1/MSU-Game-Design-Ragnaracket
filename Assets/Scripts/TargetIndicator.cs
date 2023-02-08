@@ -6,6 +6,7 @@ public class TargetIndicator : MonoBehaviour
 {
     public bool visualSetting=false;
     private MeshRenderer visual;
+    private bool targetActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +23,17 @@ public class TargetIndicator : MonoBehaviour
         }
         transform.position = newPos;
         visual.enabled = visualSetting;
+        targetActive = true;
     }
 
     public void Hide()
     {
         visual.enabled = false;
+        targetActive = false;
+    }
+
+    public bool IsActive()
+    {
+        return targetActive;
     }
 }
