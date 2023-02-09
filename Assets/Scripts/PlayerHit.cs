@@ -56,7 +56,6 @@ public class PlayerHit : MonoBehaviour
     }
     public void OnDisable()
     {
-         StartCoroutine(StopSpam(5f));
         hitAction.performed -= OnHit;
         
         hitAction.Disable();
