@@ -10,14 +10,23 @@ public class PlayerHit : MonoBehaviour
     private BoxCollider racketCollider;
     private AudioSource swingSound;
 
+    private GameObject racket;
+
+    private GameObject player;
+
+    private GameObject shuttlecock;
+
+    private bool noSpam;
+
     private void Start()
     {
         swingSound = transform.Find("Audio").Find("Swing").GetComponent<AudioSource>();
-        GameObject player= GameObject.FindWithTag("Player");
+        player= GameObject.FindWithTag("Player");
+        shuttlecock=GameObject.FindWithTag("Shuttlecock");
         if (player != null)
         {
-            GameObject playerRacket = player.transform.Find("Racket").gameObject;
-            racketCollider = playerRacket.GetComponent<BoxCollider>();
+            racket = player.transform.Find("Racket").gameObject;
+            racketCollider = racket.GetComponent<BoxCollider>();
         }
        
     }
@@ -34,13 +43,20 @@ public class PlayerHit : MonoBehaviour
         if (context.performed)
         {
             swingSound.Play();
+            
+            float distance = Vector3.Distance(player.transform.position, shuttlecock.transform.position);
+            
+            Debug.Log("Distance between shuttlecock and player is " + distance);
             racketCollider.enabled = true;
-            StartCoroutine(TurnOffAfterDelay(1f));
-            Debug.Log("Hallelejuah Y is pressed!!!!");
+            StartCoroutine(TurnOffAfterDelay(0.25f));
+        
+           
+            
         }
     }
     public void OnDisable()
     {
+         StartCoroutine(StopSpam(5f));
         hitAction.performed -= OnHit;
         
         hitAction.Disable();
@@ -53,8 +69,14 @@ public class PlayerHit : MonoBehaviour
 
     private IEnumerator TurnOffAfterDelay(float delay)
     {
+
         yield return new WaitForSeconds(delay);
         racketCollider.enabled = false;
+    }
+
+    private IEnumerator StopSpam(float delay)
+    {
+        yield return new WaitForSeconds(delay);
     }
 
 }
