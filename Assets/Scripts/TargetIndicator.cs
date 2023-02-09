@@ -16,7 +16,11 @@ public class TargetIndicator : MonoBehaviour
     // Becomes visible and moves to provided location
     public void Show(Vector3 newPos)
     {
-        transform.localPosition = newPos;
+        if (visual == null)
+        {
+            visual = GetComponent<MeshRenderer>();
+        }
+        transform.position = newPos;
         visual.enabled = visualSetting;
     }
 

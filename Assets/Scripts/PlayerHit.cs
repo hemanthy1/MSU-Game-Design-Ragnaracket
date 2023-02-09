@@ -7,23 +7,32 @@ using UnityEngine.InputSystem;
 public class PlayerHit : MonoBehaviour
 {
     private InputAction hitAction;
-    
-
     private BoxCollider racketCollider;
+    private AudioSource swingSound;
+
+    private GameObject racket;
+
+    private GameObject player;
+
+    private GameObject shuttlecock;
+
+    private bool noSpam;
 
     private void Start()
     {
-        GameObject player= GameObject.FindWithTag("Player");
+        swingSound = transform.Find("Audio").Find("Swing").GetComponent<AudioSource>();
+        player= GameObject.FindWithTag("Player");
+        shuttlecock=GameObject.FindWithTag("Shuttlecock");
         if (player != null)
         {
-            GameObject playerRacket = player.transform.Find("ProgrammerRacket").gameObject;
-            racketCollider = playerRacket.GetComponent<BoxCollider>();
+            racket = player.transform.Find("Racket").gameObject;
+            racketCollider = racket.GetComponent<BoxCollider>();
         }
        
     }
     public void OnEnable()
     {
-        hitAction = new InputAction("Hit", InputActionType.Button, "<Keyboard>/y");
+        hitAction = new InputAction("Hit", InputActionType.Button, "<Mouse>/leftButton");
         hitAction.performed += OnHit;
         hitAction.Enable();
         
@@ -33,13 +42,21 @@ public class PlayerHit : MonoBehaviour
     {
         if (context.performed)
         {
+            swingSound.Play();
+            
+            float distance = Vector3.Distance(player.transform.position, shuttlecock.transform.position);
+            
+            Debug.Log("Distance between shuttlecock and player is " + distance);
             racketCollider.enabled = true;
-            StartCoroutine(TurnOffAfterDelay(1f));
-            Debug.Log("Hallelejuah Y is pressed!!!!");
+            StartCoroutine(TurnOffAfterDelay(0.25f));
+        
+           
+            
         }
     }
     public void OnDisable()
     {
+         StartCoroutine(StopSpam(5f));
         hitAction.performed -= OnHit;
         
         hitAction.Disable();
@@ -52,8 +69,14 @@ public class PlayerHit : MonoBehaviour
 
     private IEnumerator TurnOffAfterDelay(float delay)
     {
+
         yield return new WaitForSeconds(delay);
         racketCollider.enabled = false;
+    }
+
+    private IEnumerator StopSpam(float delay)
+    {
+        yield return new WaitForSeconds(delay);
     }
 
 }

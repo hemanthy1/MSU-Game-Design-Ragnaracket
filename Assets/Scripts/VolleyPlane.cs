@@ -12,7 +12,7 @@ public class VolleyPlane : MonoBehaviour
 
     private float halfWidth;
     private float halfHeight;
-    private TargetIndicator targetIndicator;
+    private TargetIndicator targetIndicator = null;
     [SerializeField]
     private bool autoVolley = false;
 
@@ -43,10 +43,16 @@ public class VolleyPlane : MonoBehaviour
     {
         float targetHorizontal = Random.Range(-halfWidth, halfWidth);
         float targetVertical = Random.Range(-halfHeight, halfHeight);
-        Vector3 localPoint = new Vector3(0, targetVertical, targetHorizontal);
+        Vector3 targetPoint = new Vector3(0, targetVertical, targetHorizontal) + transform.position;
 
-        targetIndicator.Show(localPoint);
-        return transform.position + localPoint;
+        if (targetIndicator == null)
+        {
+            Debug.Log("Target indicator null");
+            targetIndicator = transform.Find("TargetIndicator").GetComponent<TargetIndicator>();
+        }
+
+        targetIndicator.Show(targetPoint);
+        return targetPoint;
     }
 
     public float GetWidth()

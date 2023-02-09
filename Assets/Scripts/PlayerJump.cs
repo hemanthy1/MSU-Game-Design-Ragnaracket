@@ -11,11 +11,15 @@ public class PlayerJump : MonoBehaviour
     private Vector3 playerVelocity;
     private bool isGrounded;
 
-    [SerializeField] private float jumpHeight = 5.0f; 
+    private bool isJumpReleased;
+
+    [SerializeField] private float jumpHeight = 32.0f; 
 
     private bool jumpPressed = false;
 
-    private float gravity = -9.81f;
+    [SerializeField] private float gravity = -9.81f;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,10 +36,16 @@ public class PlayerJump : MonoBehaviour
     void MovementJump()
     {
         isGrounded = characterController.isGrounded;
+        isJumpReleased = Input.GetButtonUp("Jump");
         //If on the ground, stop the vertical movement
         if (isGrounded)
         {
             playerVelocity.y = 0.0f;
+        }
+
+        if (isJumpReleased && playerVelocity.y > 0.0f)
+        {
+            playerVelocity.y = 0;
         }
 
         if (jumpPressed && isGrounded)
@@ -50,7 +60,7 @@ public class PlayerJump : MonoBehaviour
 
     public void OnJump()
     {
-        Debug.Log("Jump pressed");
+        //Debug.Log("Jump pressed");
         
         if (characterController.velocity.y == 0)
         {
