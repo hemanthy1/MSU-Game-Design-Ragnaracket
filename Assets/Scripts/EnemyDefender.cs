@@ -17,41 +17,56 @@ public class EnemyDefender : MonoBehaviour
     [SerializeField]
     private float accel = 0.05f;
     [SerializeField]
-    private float tolerance = 0.05f;
+    private float tolerance = 0.5f;
+    [SerializeField]
+    private float regenerationTime = 3f;
+
+    private float regenTimer = 0f;
+    private bool disabled = false;
 
     // Start is called before the first frame update
     void Start()
     {
         targets.Add(0, transform.parent.Find("EnemyHome"));
         targets.Add(1, transform.parent.Find("TargetIndicator"));
+        targets.Add(3, transform.parent.Find("DisabledHold"));
         target = targets[1].GetComponent<TargetIndicator>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (currentTarget == 0 && target.IsActive())
+        if (disabled)
         {
-            ToggleTarget();
+            Regenerate();
         }
-        else if (currentTarget == 1 && !target.IsActive())
+        else
         {
-            ToggleTarget();
-        }
-        else if ((targets[currentTarget].position - transform.position).magnitude < tolerance)
-        {
-            ResetVelocity();
-        }
+            if (currentTarget == 0 && target.IsActive())
+            {
+                ToggleTarget();
+            }
+            else if (currentTarget == 1 && !target.IsActive())
+            {
+                ToggleTarget();
+            }
 
-        UpdateMovementWithAccel();
-        //UpdateMovementLinear();
+            Vector3 dist = (targets[currentTarget].position - transform.position);
+            dist.x = 0;
+            if (dist.magnitude < tolerance)
+            {
+                Debug.Log("Linear");
+                UpdateMovementLinear();
+            }
+            else
+            {
+                UpdateMovementWithAccel();
+            }
+        }
     }
 
     private void UpdateMovementLinear()
     {
-        //Vector3 distance = (targets[currentTarget].position - transform.position).normalized;
-        //distance.x = 0;
-        //transform.position += distance * currentSpeed;
         transform.position = Vector3.MoveTowards(transform.position, targets[currentTarget].position, maxSpeed);
     }
 
@@ -78,5 +93,23 @@ public class EnemyDefender : MonoBehaviour
     {
         currentTarget = (currentTarget == 0 ? 1 : 0);
         currentSpeed = maxSpeed;
+    }
+
+    public void Disable()
+    {
+        disabled = true;
+        currentTarget = 3;
+    }
+
+    private void Regenerate()
+    {
+        regenTimer += Time.deltaTime;
+        UpdateMovementLinear();
+        if (regenTimer > regenerationTime)
+        {
+            regenTimer = 0f;
+            disabled = false;
+            currentTarget = 0;
+        }
     }
 }
