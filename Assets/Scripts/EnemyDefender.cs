@@ -67,7 +67,9 @@ public class EnemyDefender : MonoBehaviour
 
     private void UpdateMovementLinear()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targets[currentTarget].position, maxSpeed);
+        Vector3 move = Vector3.MoveTowards(transform.position, targets[currentTarget].position, maxSpeed);
+        move.x = transform.position.x;
+        transform.position = move;
     }
 
     private void UpdateMovementWithAccel()
@@ -110,6 +112,14 @@ public class EnemyDefender : MonoBehaviour
             regenTimer = 0f;
             disabled = false;
             currentTarget = 0;
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Shuttlecock")
+        {
+            other.transform.parent.GetComponent<ShuttlecockMotion>().NextTarget();
         }
     }
 }
