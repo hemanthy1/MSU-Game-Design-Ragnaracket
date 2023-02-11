@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2496990063303636621}
   - component: {fileID: 2496990063303636618}
   - component: {fileID: 2496990063303636619}
+  - component: {fileID: 5260196166811356974}
   m_Layer: 0
   m_Name: Shuttlecock
   m_TagString: Untagged
@@ -49,6 +50,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   moving: 1
+  baseSpeed: 0.01
+  speedGrowth: 0.002
 --- !u!54 &2496990063303636619
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -65,6 +68,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &5260196166811356974
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496990063303636620}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 1.64
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: -0.27}
 --- !u!1 &2496990064376684700
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +91,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2496990064376684701}
-  - component: {fileID: 4670591410494601556}
   m_Layer: 0
   m_Name: Model
   m_TagString: Shuttlecock
@@ -97,20 +113,6 @@ Transform:
   m_Father: {fileID: 2496990063303636621}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &4670591410494601556
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2496990064376684700}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.4
-  m_Height: 1.64
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: -0.27}
 --- !u!1 &5056859705397037586
 GameObject:
   m_ObjectHideFlags: 0

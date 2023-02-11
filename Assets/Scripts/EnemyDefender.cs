@@ -8,7 +8,6 @@ public class EnemyDefender : MonoBehaviour
     private TargetIndicator target;
     private Dictionary<int, Transform> targets = new Dictionary<int, Transform>();
     private int currentTarget = 0;
-
     private Vector3 currentVelocity = new Vector3(0, 0, 0);
     private float currentSpeed = 0f;
 
@@ -55,7 +54,7 @@ public class EnemyDefender : MonoBehaviour
             dist.x = 0;
             if (dist.magnitude < tolerance)
             {
-                Debug.Log("Linear");
+                //Debug.Log("Linear");
                 UpdateMovementLinear();
             }
             else
@@ -101,6 +100,7 @@ public class EnemyDefender : MonoBehaviour
     {
         disabled = true;
         currentTarget = 3;
+        GetComponent<Collider>().enabled = false;
     }
 
     private void Regenerate()
@@ -112,6 +112,8 @@ public class EnemyDefender : MonoBehaviour
             regenTimer = 0f;
             disabled = false;
             currentTarget = 0;
+            GetComponent<Collider>().enabled = true;
+            GetComponent<EnemyStamina>().RegenStamina();
         }
     }
 
@@ -119,7 +121,8 @@ public class EnemyDefender : MonoBehaviour
     {
         if (other.tag == "Shuttlecock")
         {
-            other.transform.parent.GetComponent<ShuttlecockMotion>().NextTarget();
+            other.GetComponent<ShuttlecockMotion>().NextTarget();
+            target.Hide();
         }
     }
 }

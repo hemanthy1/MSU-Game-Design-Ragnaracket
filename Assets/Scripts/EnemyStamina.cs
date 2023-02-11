@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyStamina : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class EnemyStamina : MonoBehaviour
 
     private BoxCollider shuttleCollider;
 
+    private EnemyDefender behaviorScript;
+
+    private SliderUI staminaBar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +27,9 @@ public class EnemyStamina : MonoBehaviour
         enemyStamina = enemyMaxStamina;
         shuttleCollider = GameObject.Find("Shuttlecock").GetComponent<BoxCollider>();
         enemyRacketCollider = GetComponent<BoxCollider>();
+        behaviorScript = GetComponent<EnemyDefender>();
+        staminaBar = GameObject.Find("StaminaBar").GetComponent<SliderUI>();
+        staminaBar.SetMax(enemyMaxStamina);
     }
 
     // Update is called once per frame
@@ -32,13 +40,14 @@ public class EnemyStamina : MonoBehaviour
 
     private void DoDamageToStamina(float damage)
     {
-
         enemyStamina -= damage;
-
         if (enemyStamina <= 0)
         {
+            enemyStamina = 0;
+            behaviorScript.Disable();
             //Destroy enemy racket
         }
+        staminaBar.UpdateValue(enemyStamina);
     }
 
     void OnTriggerEnter(Collider collision)
@@ -46,5 +55,11 @@ public class EnemyStamina : MonoBehaviour
         float damage = 5f; //Calculate this later
 
         DoDamageToStamina((float)damage);
+    }
+
+    public void RegenStamina()
+    {
+        enemyStamina = enemyMaxStamina;
+        staminaBar.UpdateValue(enemyStamina);
     }
 }

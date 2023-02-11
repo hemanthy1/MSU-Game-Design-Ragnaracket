@@ -17,7 +17,7 @@ public class Racket : MonoBehaviour
         if (other.tag == "Shuttlecock")
         {
             hitSound.Play();
-            other.transform.parent.GetComponent<ShuttlecockMotion>().NextTarget();
+            other.GetComponent<ShuttlecockMotion>().NextTarget();
         }
     }
 }
