@@ -71,13 +71,19 @@ public class ShuttlecockMotion : MonoBehaviour
         return 2 * horizontalCoefficient * (transform.position.x - midpoint.x) * speed * new Vector3(0, 0, 1);
     }
 
-    public void NextTarget()
+    //Aiming:
+    //  Negative if not aiming
+    //  0 if setting a max
+    //  1 if setting a min
+    //
+    //  MUST PASS A NUMBER FOR AIMPOS IF AIMING IS NOT NEGATIVE
+    public void NextTarget(int aiming = -1, float aimPos = -1)
     {
         nextTarget++;
         if (nextTarget >= targets.Count)
             nextTarget = 0;
-
-        Vector3 newTargetPoint = targets[nextTarget].GenerateTarget();
+        
+        Vector3 newTargetPoint = targets[nextTarget].GenerateTarget(aiming, aimPos);
         directAxis = newTargetPoint - transform.position;
         Vector3.Normalize(directAxis);
         normal = Vector3.Cross(directAxis, new Vector3(0, 0, 1)).normalized;
