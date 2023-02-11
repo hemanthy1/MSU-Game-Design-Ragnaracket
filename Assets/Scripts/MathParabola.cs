@@ -1,6 +1,8 @@
 using UnityEngine;
 using System;
 
+//https://gist.github.com/ditzel/68be36987d8e7c83d48f497294c66e08
+
 public class MathParabola
 {
 
