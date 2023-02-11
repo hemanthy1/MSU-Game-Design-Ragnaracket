@@ -18,6 +18,8 @@ public class PlayerHit : MonoBehaviour
 
     private bool noSpam;
 
+    private int perfectHits=0;
+
     private void Start()
     {
         swingSound = transform.Find("Audio").Find("Swing").GetComponent<AudioSource>();
@@ -47,6 +49,14 @@ public class PlayerHit : MonoBehaviour
             float distance = Vector3.Distance(player.transform.position, shuttlecock.transform.position);
             
             Debug.Log("Distance between shuttlecock and player is " + distance);
+
+            if (distance<3.0f)
+            {
+                perfectHits++;
+                Debug.Log("Perfect hits: " + perfectHits);
+            }
+            
+
             racketCollider.enabled = true;
             StartCoroutine(TurnOffAfterDelay(0.25f));
         
