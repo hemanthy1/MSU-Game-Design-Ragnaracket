@@ -39,15 +39,9 @@ public class VolleyPlane : MonoBehaviour
     }
 
     // Generates a location  within the bounds of the plane
-    public Vector3 GenerateTarget(int aiming = -1, float aimPos = -1)
+    public Vector3 GenerateTarget()
     {
-        float targetHorizontal;
-        if (aiming == 0)
-            targetHorizontal = Random.Range(aimPos, halfWidth);
-        else if (aiming == 1)
-            targetHorizontal = Random.Range(-halfWidth, aimPos);
-        else
-            targetHorizontal = Random.Range(-halfWidth, halfWidth);
+        float targetHorizontal = Random.Range(-halfWidth, halfWidth);
         float targetVertical = Random.Range(-halfHeight, halfHeight);
         Vector3 targetPoint = new Vector3(0, targetVertical, targetHorizontal) + transform.position;
 
