@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 6216277687017917017}
   - component: {fileID: 6216277687017917022}
   - component: {fileID: 6216277687017917023}
+  - component: {fileID: 3331733199130986674}
   m_Layer: 0
   m_Name: DefenderPlane
   m_TagString: Untagged
@@ -157,6 +158,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoVolley: 1
+--- !u!114 &3331733199130986674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6216277687017917016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee56360f89ab9e458ac58df28a7ea63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHealth: 0
+  enemyMaxHealth: 100
 --- !u!1 &6991257244247046179
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6991257244266174129}
   - component: {fileID: 6991257244266174126}
+  - component: {fileID: 6762650448576975251}
   m_Layer: 0
   m_Name: EnemyDefender
   m_TagString: Untagged
@@ -237,6 +253,20 @@ MonoBehaviour:
   accel: 0.05
   tolerance: 0.5
   regenerationTime: 3
+--- !u!114 &6762650448576975251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6991257244266174128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28f7afedb943a334eada951d84bf361e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyStamina: 0
+  enemyMaxStamina: 100
 --- !u!1 &6991257244300872039
 GameObject:
   m_ObjectHideFlags: 0
