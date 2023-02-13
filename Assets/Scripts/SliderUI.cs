@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SliderUI : MonoBehaviour
 {
-    private Slider slider;
+    private Slider slider = null;
     private float actualVal;
     public float lerpSpeed = 0.5f;
 
@@ -25,6 +25,8 @@ public class SliderUI : MonoBehaviour
 
     public void SetMax(float newVal)
     {
+        if (slider == null)
+            slider = GetComponent<Slider>();
         slider.maxValue = newVal;
         slider.value = newVal;
         actualVal = newVal;
