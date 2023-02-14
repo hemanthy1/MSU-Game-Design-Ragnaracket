@@ -8,14 +8,16 @@ public class RockThrust : MonoBehaviour
 {
     protected float parabolaAnimation;
 
-    [SerializeField]
-    private Vector3 destination = new Vector3(16, 3.5f, 0);
+    public GameObject player;
+    
+    private Vector3 destination;
 
     //Update this script so that it picks a random destination on the player plane to launch to
 
     // Start is called before the first frame update
     void Start()
     {
+        destination = player.transform.position;
         
     }
 
@@ -24,8 +26,11 @@ public class RockThrust : MonoBehaviour
     {
         parabolaAnimation += Time.deltaTime;
 
-        parabolaAnimation = parabolaAnimation % 5f;
+        parabolaAnimation = parabolaAnimation % 5;
 
-        transform.position = MathParabola.Parabola(transform.position, destination, 5f, parabolaAnimation / 5f);
+        transform.position = MathParabola.Parabola(transform.position, destination, 5, parabolaAnimation / 5);
+
+        
     }
 }
+
