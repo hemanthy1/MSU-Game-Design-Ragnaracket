@@ -42,10 +42,8 @@ public class VolleyPlane : MonoBehaviour
     public Vector3 GenerateTarget(int aiming = -1, float aimPos = -1)
     {
         float targetHorizontal;
-        if (aiming == 0)
-            targetHorizontal = Random.Range(aimPos, halfWidth);
-        else if (aiming == 1)
-            targetHorizontal = Random.Range(-halfWidth, aimPos);
+        if (aiming == 0 || aiming == 1)
+            targetHorizontal = Random.Range(-halfWidth*aimPos, aimPos*halfWidth);
         else
             targetHorizontal = Random.Range(-halfWidth, halfWidth);
         float targetVertical = Random.Range(-halfHeight, halfHeight);

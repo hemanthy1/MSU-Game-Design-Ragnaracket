@@ -16,7 +16,7 @@ public class PlayerHit : MonoBehaviour
 
     private GameObject shuttlecock;
 
-    private bool noSpam;
+    private bool noSpam=false;
 
     private int perfectHits=0;
 
@@ -50,14 +50,47 @@ public class PlayerHit : MonoBehaviour
             
             Debug.Log("Distance between shuttlecock and player is " + distance);
 
-            if (distance<3.0f)
+            if(!noSpam)
             {
-                perfectHits++;
-                Debug.Log("Perfect hits: " + perfectHits);
-            }
-            
+                if(distance<3.0f)
+                {
+                    shuttlecock.transform.parent.GetComponent<ShuttlecockMotion>().NextTarget(0,0.5f);
+                }
+                else if (distance <5.0f)
+                {
+                    //left
+                    shuttlecock.transform.parent.GetComponent<ShuttlecockMotion>().NextTarget(0,1.0f);
+                }
+                else if(distance<6.5f)
+                {
+                    //middle
+                    shuttlecock.transform.parent.GetComponent<ShuttlecockMotion>().NextTarget(0,1.25f);
+                }
+                else if (distance <8.0f)
+                {
+                    //right
+                    shuttlecock.transform.parent.GetComponent<ShuttlecockMotion>().NextTarget(1,1.5f);
+                }
+                else if (distance<8.9f)
+                {
+                    shuttlecock.transform.parent.GetComponent<ShuttlecockMotion>().NextTarget(1,1.8f);
 
-            racketCollider.enabled = true;
+                }
+                
+                
+
+                if (distance<3.55f)
+                {
+                    perfectHits++;
+
+                    
+                    Debug.Log("Perfect hits: " + perfectHits);
+                }
+        }
+            noSpam=true;
+
+
+            //racketCollider.enabled = true;
             StartCoroutine(TurnOffAfterDelay(0.25f));
         
            
@@ -80,7 +113,7 @@ public class PlayerHit : MonoBehaviour
     {
 
         yield return new WaitForSeconds(delay);
-        racketCollider.enabled = false;
+        noSpam = false;
     }
 
     private IEnumerator StopSpam(float delay)
