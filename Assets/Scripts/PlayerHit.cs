@@ -48,7 +48,6 @@ public class PlayerHit : MonoBehaviour
             
             float distance = Vector3.Distance(player.transform.position, shuttlecock.transform.position);
             
-            Debug.Log("Distance between shuttlecock and player is " + distance);
 
             if(!noSpam)
             {
@@ -83,7 +82,6 @@ public class PlayerHit : MonoBehaviour
                 {
                     perfectHits++;
 
-                    
                     Debug.Log("Perfect hits: " + perfectHits);
                 }
         }
