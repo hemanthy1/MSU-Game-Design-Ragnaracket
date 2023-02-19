@@ -1545,7 +1545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8226832975141367183, guid: 88c63f26b39ac674ab85c60f4a0df231, type: 3}
       propertyPath: gravity
-      value: -60
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 8226832975141367183, guid: 88c63f26b39ac674ab85c60f4a0df231, type: 3}
       propertyPath: jumpHeight
@@ -3217,8 +3217,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1336614797 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6216277687017917023, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
-  m_PrefabInstance: {fileID: 1399352663}
+  m_CorrespondingSourceObject: {fileID: 3981543753465736527, guid: 2907749a4a127ec45bb6b291f4ac6994, type: 3}
+  m_PrefabInstance: {fileID: 1901504330}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
