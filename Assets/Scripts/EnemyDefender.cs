@@ -120,7 +120,6 @@ public class EnemyDefender : MonoBehaviour
         if (other.tag == "Shuttlecock")
         {
             other.transform.parent.GetComponent<ShuttlecockMotion>().NextTarget();
-            VolleyManager.instance.IncreaseVolley();
         }
     }
 }

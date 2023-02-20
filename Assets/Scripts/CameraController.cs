@@ -35,30 +35,25 @@ public class CameraController : MonoBehaviour
     void CameraPositioning()
     {
         
-     
-        if (player.transform.position.y > 14f)
+        //Use the collider's position to find the edges and do the math from there. 
+        if (player.transform.position.z > (playAreaLength/2 - 0.2f * (playAreaLength)) ||
+            player.transform.position.z < (-playAreaLength / 2 + 0.2f * (playAreaLength)))
         {
-            transform.Rotate(0, 0, -(14f - player.transform.position.y / 100000));
-            if (player.transform.position.z > 15f)
+            if (Mathf.Abs(playerBody.velocity.magnitude) > 20)
             {
-                transform.Rotate(0, (player.transform.position.z - 15f) / 60, 0);
+                MoveCamera(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             }
-
-            if (player.transform.position.z < -15f)
-            {
-                transform.Rotate(0, (15f + player.transform.position.z) / 60, 0);
-            }
-
-            else
-            {
-                transform.rotation = Quaternion.identity;
-            }
+            
+        }
+        else
+        {
+            MoveCamera(-transform.position.z, 0);
         }
     }
 
-    //void MoveCamera(float x, float y)
-    //{
-    //    Vector3 movementAmount = new Vector3(y, 0, x) * speed * Time.deltaTime;
-    //    transform.Translate(movementAmount);
-    //}
+    void MoveCamera(float x, float y)
+    {
+        Vector3 movementAmount = new Vector3(y, 0, x) * speed * Time.deltaTime;
+        transform.Translate(movementAmount);
+    }
 }

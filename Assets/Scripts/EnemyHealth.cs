@@ -52,8 +52,8 @@ public class EnemyHealth : MonoBehaviour
     void OnTriggerEnter(Collider collision)
     {
         float damage = 5f; //Calculate this later
-        
+        Debug.Log("Hey I'm hitting here");
         DoDamageToHealth(damage);
-        VolleyManager.instance.IncreaseVolley();
+        
     }
 }
