@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class EnemyHealth : MonoBehaviour
 
     private BoxCollider shuttleCollider;
 
+    private SliderUI healthBar;
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,24 +31,20 @@ public class EnemyHealth : MonoBehaviour
         shuttleCock = GameObject.Find("Shuttlecock");
         shuttleCollider = shuttleCock.GetComponent<BoxCollider>();
         enemyCollider = GetComponent<BoxCollider>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        healthBar = GameObject.Find("HealthBar").GetComponent<SliderUI>();
+        healthBar.SetMax(enemyMaxHealth);
     }
 
     private void DoDamageToHealth(float damage)
     {
-        
         enemyHealth -= damage;
-
         if (enemyHealth <= 0)
         {
+            enemyHealth = 0;
             Destroy(enemyStructure);
             Destroy(shuttleCock);
         }
+        healthBar.UpdateValue(enemyHealth);
     }
 
 

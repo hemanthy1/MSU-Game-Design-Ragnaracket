@@ -32,7 +32,7 @@ public class VolleyPlane : MonoBehaviour
             targetIndicator.Hide();
             if (autoVolley)
             {
-                other.transform.parent.GetComponent<ShuttlecockMotion>().NextTarget();
+                other.GetComponent<ShuttlecockMotion>().NextTarget();
                 targetIndicator.Hide();
             }
         }

@@ -7,6 +7,8 @@ public class ShuttlecockMotion : MonoBehaviour
     // Fields used to keep track of target
     [Tooltip("List of target planes")]
     public List<VolleyPlane> targets = new List<VolleyPlane>();
+    [SerializeField]
+    private GameObject projectionPrefab;
     private int nextTarget = 0;
     private Vector3 targetPoint = new Vector3();
     private Vector3 directAxis = new Vector3();
@@ -92,6 +94,8 @@ public class ShuttlecockMotion : MonoBehaviour
 
         SpeedGrow();
         CalculateParameters();
+        GameObject projection = Instantiate(projectionPrefab, transform.position, Quaternion.identity);
+        projection.GetComponent<ShuttlecockProjection>().Initialize(speed, targetPoint, directAxis, normal, midpoint, horizontalCoefficient, verticalCoefficient);
     }
 
     public void SetSpeed(float newSpeed)
