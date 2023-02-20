@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1218,6 +1218,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &339959473 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6216277687017917023, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
+  m_PrefabInstance: {fileID: 1399352663}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dcd7a67f0ab5c54b80a01beaeab5784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &360269503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,7 +1488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8226832975141367173, guid: 88c63f26b39ac674ab85c60f4a0df231, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8226832975141367173, guid: 88c63f26b39ac674ab85c60f4a0df231, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1791,7 +1802,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3609382025989560997, guid: 6fbb61a7f10880a4ba2a8a569f5eb53a, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3609382025989560997, guid: 6fbb61a7f10880a4ba2a8a569f5eb53a, type: 3}
       propertyPath: m_LocalScale.x
@@ -2206,8 +2217,8 @@ Transform:
   - {fileID: 1042289279}
   - {fileID: 491619822}
   - {fileID: 1051375324}
-  - {fileID: 1409869168}
   - {fileID: 1434444712}
+  - {fileID: 1409869168}
   - {fileID: 611980753}
   - {fileID: 769783232}
   - {fileID: 2116075161}
@@ -3215,17 +3226,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6216277687017917017, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
   m_PrefabInstance: {fileID: 1399352663}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1336614797 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3981543753465736527, guid: 2907749a4a127ec45bb6b291f4ac6994, type: 3}
-  m_PrefabInstance: {fileID: 1901504330}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dcd7a67f0ab5c54b80a01beaeab5784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1388542257
 GameObject:
   m_ObjectHideFlags: 0
@@ -3556,7 +3556,7 @@ Transform:
   m_LocalScale: {x: 100, y: 5, z: 80}
   m_Children: []
   m_Father: {fileID: 826181355}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1434444713
 BoxCollider:
@@ -3732,13 +3732,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 26901818}
     m_Modifications:
     - target: {fileID: 2496990063303636618, guid: a282a2667f0366a40bc9e3b7521b0fb9, type: 3}
+      propertyPath: speedCap
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2496990063303636618, guid: a282a2667f0366a40bc9e3b7521b0fb9, type: 3}
       propertyPath: targets.Array.data[0]
       value: 
       objectReference: {fileID: 2097842098}
     - target: {fileID: 2496990063303636618, guid: a282a2667f0366a40bc9e3b7521b0fb9, type: 3}
       propertyPath: targets.Array.data[1]
       value: 
-      objectReference: {fileID: 1336614797}
+      objectReference: {fileID: 339959473}
     - target: {fileID: 2496990063303636620, guid: a282a2667f0366a40bc9e3b7521b0fb9, type: 3}
       propertyPath: m_Name
       value: Shuttlecock
