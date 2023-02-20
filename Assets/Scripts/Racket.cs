@@ -18,6 +18,7 @@ public class Racket : MonoBehaviour
         {
             hitSound.Play();
             other.transform.parent.GetComponent<ShuttlecockMotion>().NextTarget();
+            VolleyManager.instance.AddVolley();
         }
     }
 }

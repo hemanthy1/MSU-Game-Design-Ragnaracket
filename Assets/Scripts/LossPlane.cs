@@ -22,6 +22,7 @@ public class LossPlane : MonoBehaviour
             other.GetComponent<ShuttlecockMotion>().ResetSpeed();
             other.GetComponent<ShuttlecockMotion>().SetMoving(false);
             trebuchet.AnimationStart();
+            VolleyManager.instance.ResetVolley();
         }
     }
 }
