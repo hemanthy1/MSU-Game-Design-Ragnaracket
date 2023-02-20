@@ -50,9 +50,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   projectionPrefab: {fileID: 4072669325499631159, guid: 9d6d26b67cbe7534381f6f8a71772366, type: 3}
-  moving: 1
+  moving: 0
   baseSpeed: 0.01
-  speedGrowth: 0.002
+  speedGrowth: 0.001
+  speedCap: 0.03
 --- !u!54 &2496990063303636619
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -7,8 +7,8 @@ public class ShuttlecockProjection : MonoBehaviour
 {
     [SerializeField]
     private float speed = 0.1f;
-    [SerializeField]
-    private float tolerance = 1f;
+    //[SerializeField]
+    //private float tolerance = 1f;
 
     private Vector3 targetPoint = new Vector3();
     private Vector3 directAxis = new Vector3();

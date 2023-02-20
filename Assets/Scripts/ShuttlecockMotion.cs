@@ -19,6 +19,7 @@ public class ShuttlecockMotion : MonoBehaviour
     public bool moving = true;
     public float baseSpeed = 0.01f;
     public float speedGrowth = 0.002f;
+    public float speedCap = 0.03f;
     private float speed = 0.01f;
     private float horizontalCoefficient = 1f;
     private float verticalCoefficient = 1f;
@@ -26,6 +27,8 @@ public class ShuttlecockMotion : MonoBehaviour
     private const float coefficientMin = 0.01f;
     private const float coefficientMax = 0.5f;
     private const float rotationSpeed = 0.25f;
+
+    private float tempSpeedMultiplier = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -59,18 +62,18 @@ public class ShuttlecockMotion : MonoBehaviour
 
     private Vector3 GetMovementX()
     {
-        return speed * directAxis;
+        return speed * tempSpeedMultiplier * directAxis;
     }
 
     private Vector3 GetMovementY()
     {
-        return 2 * verticalCoefficient * (transform.position.x - midpoint.x) * speed * normal;
+        return 2 * verticalCoefficient * (transform.position.x - midpoint.x) * speed * tempSpeedMultiplier * normal;
     }
 
     private Vector3 GetMovementZ()
     {
         //return new Vector3(0, 0, 0);
-        return 2 * horizontalCoefficient * (transform.position.x - midpoint.x) * speed * new Vector3(0, 0, 1);
+        return 2 * horizontalCoefficient * (transform.position.x - midpoint.x) * speed * tempSpeedMultiplier * new Vector3(0, 0, 1);
     }
 
     //Aiming:
@@ -79,8 +82,10 @@ public class ShuttlecockMotion : MonoBehaviour
     //  1 if setting a min
     //
     //  MUST PASS A NUMBER FOR AIMPOS IF AIMING IS NOT NEGATIVE
-    public void NextTarget(int aiming = -1, float aimPos = -1)
+    public void NextTarget(int aiming = -1, float aimPos = -1, float tempSpeedMult = 1)
     {
+        tempSpeedMultiplier = tempSpeedMult;
+
         nextTarget++;
         if (nextTarget >= targets.Count)
             nextTarget = 0;
@@ -105,7 +110,8 @@ public class ShuttlecockMotion : MonoBehaviour
 
     public void SpeedGrow()
     {
-        speed += speedGrowth;
+        if (speed < speedCap)
+            speed += speedGrowth;
     }
 
     public void AddSpeed(float growth)
@@ -121,5 +127,10 @@ public class ShuttlecockMotion : MonoBehaviour
     public bool IsMoving()
     {
         return moving;
+    }
+
+    public void SetMoving(bool newStatus)
+    {
+        moving = newStatus;
     }
 }
