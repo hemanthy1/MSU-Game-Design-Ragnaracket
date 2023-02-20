@@ -53,26 +53,26 @@ public class PlayerHit : MonoBehaviour
             {
                 if(distance<3.0f)
                 {
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,0.5f);
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,0.5f,2);
                 }
                 else if (distance <5.0f)
                 {
                     //left
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,1.0f);
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,1.0f,2);
                 }
                 else if(distance<6.5f)
                 {
                     //middle
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,1.25f);
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,1.25f,2);
                 }
                 else if (distance <8.0f)
                 {
                     //right
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(1,1.5f);
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(1,1.5f,2);
                 }
                 else if (distance<8.9f)
                 {
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(1,1.8f);
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(1,1.8f,2);
 
                 }
                 
