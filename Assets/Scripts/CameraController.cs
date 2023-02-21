@@ -35,25 +35,38 @@ public class CameraController : MonoBehaviour
     void CameraPositioning()
     {
         
-        //Use the collider's position to find the edges and do the math from there. 
-        if (player.transform.position.z > (playAreaLength/2 - 0.2f * (playAreaLength)) ||
-            player.transform.position.z < (-playAreaLength / 2 + 0.2f * (playAreaLength)))
+        if (player.transform.position.z < -10)
         {
-            if (Mathf.Abs(playerBody.velocity.magnitude) > 20)
+            Vector3 newRotation = new Vector3(0, -5, -1);
+            transform.rotation  = Quaternion.Euler(newRotation);
+            if (player.transform.position.y > 8)
             {
-                MoveCamera(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+                newRotation = new Vector3(0, -5, -2);
+                transform.rotation = Quaternion.Euler(newRotation);
             }
-            
         }
+
+        else if (player.transform.position.z > 10)
+        {
+            Vector3 newRotation = new Vector3(0, 5, -1);
+            transform.rotation = Quaternion.Euler(newRotation);
+            if (player.transform.position.y > 8)
+            {
+                newRotation = new Vector3(0, 5, -2);
+                transform.rotation = Quaternion.Euler(newRotation);
+            }
+        }
+
         else
         {
-            MoveCamera(-transform.position.z, 0);
+            Vector3 newRotation = new Vector3(0, 0, -1);
+            transform.rotation = Quaternion.Euler(newRotation);
         }
     }
 
-    void MoveCamera(float x, float y)
-    {
-        Vector3 movementAmount = new Vector3(y, 0, x) * speed * Time.deltaTime;
-        transform.Translate(movementAmount);
-    }
+    //void MoveCamera(float x, float y)
+    //{
+    //    Vector3 movementAmount = new Vector3(y, 0, x) * speed * Time.deltaTime;
+    //    transform.Translate(movementAmount);
+    //}
 }
