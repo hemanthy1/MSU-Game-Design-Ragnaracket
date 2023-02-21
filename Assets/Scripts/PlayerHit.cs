@@ -51,29 +51,22 @@ public class PlayerHit : MonoBehaviour
 
             if(!noSpam)
             {
-                if(distance<3.0f)
+                if(distance<2.0f)
                 {
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,0.5f);
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,1.0f,2f);
+                }
+                else if(distance<3.0f)
+                {
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,1.0f,1.5f);
                 }
                 else if (distance <5.0f)
                 {
-                    //left
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,1.0f);
+                    
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,1.0f,1.25f);
                 }
-                else if(distance<6.5f)
+                else if (distance<6.0f)
                 {
-                    //middle
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,1.25f);
-                }
-                else if (distance <8.0f)
-                {
-                    //right
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(1,1.5f);
-                }
-                else if (distance<8.9f)
-                {
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(1,1.8f);
-
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget();
                 }
                 
                 
