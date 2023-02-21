@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TargetIndicator : MonoBehaviour
 {
-    public bool visualSetting=false;
+    public bool visualSetting = false;
     private Image visual;
     private bool targetActive = false;
 
