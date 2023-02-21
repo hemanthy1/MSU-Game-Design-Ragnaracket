@@ -1009,6 +1009,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 701201120, guid: 88c63f26b39ac674ab85c60f4a0df231, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8226832975141367173, guid: 88c63f26b39ac674ab85c60f4a0df231, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -2752,6 +2756,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1116290795}
     m_Modifications:
+    - target: {fileID: 1830572565, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
+      propertyPath: m_Size.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1830572565, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6216277687017917016, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
       propertyPath: m_Name
       value: DefenderPlane
@@ -3174,6 +3186,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2496990063303636621, guid: a282a2667f0366a40bc9e3b7521b0fb9, type: 3}
   m_PrefabInstance: {fileID: 1491425513}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1693413282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1824581127, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
+  m_PrefabInstance: {fileID: 1399352663}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1693413284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693413282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f133d78716f28543a05318a909991ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swingAngle: 60
+  swingSpeed: 0.05
+  tolerance: 5
 --- !u!1001 &1698909638
 PrefabInstance:
   m_ObjectHideFlags: 0

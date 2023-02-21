@@ -18,6 +18,7 @@ public class Racket : MonoBehaviour
         {
             hitSound.Play();
             other.GetComponent<ShuttlecockMotion>().NextTarget();
+            GetComponent<Collider>().enabled = false;
         }
     }
 }

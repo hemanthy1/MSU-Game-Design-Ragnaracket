@@ -10,6 +10,7 @@ public class EnemyDefender : MonoBehaviour
     private int currentTarget = 0;
     private Vector3 currentVelocity = new Vector3(0, 0, 0);
     private float currentSpeed = 0f;
+    private ClawJoint claw;
 
     [SerializeField]
     private float maxSpeed = 0.01f;
@@ -30,6 +31,7 @@ public class EnemyDefender : MonoBehaviour
         targets.Add(1, transform.parent.Find("TargetIndicator"));
         targets.Add(3, transform.parent.Find("DisabledHold"));
         target = targets[1].GetComponent<TargetIndicator>();
+        claw = transform.Find("Model").Find("arm").Find("BaseJoint").Find("SegmentJoint").Find("ClawJoint").GetComponent<ClawJoint>();
     }
 
     // Update is called once per frame
@@ -123,6 +125,7 @@ public class EnemyDefender : MonoBehaviour
         {
             other.GetComponent<ShuttlecockMotion>().NextTarget();
             target.Hide();
+            claw.StartSwing();
         }
     }
 }
