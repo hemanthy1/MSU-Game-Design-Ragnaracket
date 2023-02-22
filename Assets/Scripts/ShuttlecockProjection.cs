@@ -74,13 +74,13 @@ public class ShuttlecockProjection : MonoBehaviour
         {
             if (transform.position.x <= targetPoint.x)
             {
-                Debug.Log("SpeedNegative: " + speedNeg + "; " + transform.position.x + " <= " + targetPoint.x);
+                //Debug.Log("SpeedNegative: " + speedNeg + "; " + transform.position.x + " <= " + targetPoint.x);
                 moving = false;
             }
         }
         else if (transform.position.x >= targetPoint.x)
         {
-            Debug.Log("SpeedNegative: " + speedNeg + "; " + transform.position.x + " >= " + targetPoint.x);
+            //Debug.Log("SpeedNegative: " + speedNeg + "; " + transform.position.x + " >= " + targetPoint.x);
             moving = false;
         }
     }

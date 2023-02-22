@@ -62,6 +62,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Flip"",
+                    ""type"": ""Button"",
+                    ""id"": ""99f78c87-528d-4798-9f85-d95efc8a043e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -240,6 +249,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Hit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""46985407-7ecf-4d8e-b754-9c71255cd63f"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -252,6 +272,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
         m_Movement_Dash = m_Movement.FindAction("Dash", throwIfNotFound: true);
         m_Movement_Hit = m_Movement.FindAction("Hit", throwIfNotFound: true);
+        m_Movement_Flip = m_Movement.FindAction("Flip", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -315,6 +336,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Jump;
     private readonly InputAction m_Movement_Dash;
     private readonly InputAction m_Movement_Hit;
+    private readonly InputAction m_Movement_Flip;
     public struct MovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -323,6 +345,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Movement_Jump;
         public InputAction @Dash => m_Wrapper.m_Movement_Dash;
         public InputAction @Hit => m_Wrapper.m_Movement_Hit;
+        public InputAction @Flip => m_Wrapper.m_Movement_Flip;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -344,6 +367,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Hit.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnHit;
                 @Hit.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnHit;
                 @Hit.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnHit;
+                @Flip.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnFlip;
+                @Flip.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnFlip;
+                @Flip.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnFlip;
             }
             m_Wrapper.m_MovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -360,6 +386,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Hit.started += instance.OnHit;
                 @Hit.performed += instance.OnHit;
                 @Hit.canceled += instance.OnHit;
+                @Flip.started += instance.OnFlip;
+                @Flip.performed += instance.OnFlip;
+                @Flip.canceled += instance.OnFlip;
             }
         }
     }
@@ -370,5 +399,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnHit(InputAction.CallbackContext context);
+        void OnFlip(InputAction.CallbackContext context);
     }
 }

@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class PlayerHit : MonoBehaviour
 {
     private InputAction hitAction;
+
+    private InputAction flipAction;
     private BoxCollider racketCollider;
     private AudioSource swingSound;
 
@@ -20,8 +22,13 @@ public class PlayerHit : MonoBehaviour
 
     private int perfectHits=0;
 
+    
+
+    bool flipped=false;
+
     private void Start()
     {
+        
         swingSound = transform.Find("Audio").Find("Swing").GetComponent<AudioSource>();
         player= GameObject.FindWithTag("Player");
         shuttlecock=GameObject.FindWithTag("Shuttlecock");
@@ -29,15 +36,41 @@ public class PlayerHit : MonoBehaviour
         {
             racket = player.transform.Find("Racket").gameObject;
             racketCollider = racket.GetComponent<BoxCollider>();
+            
         }
        
     }
     public void OnEnable()
     {
         hitAction = new InputAction("Hit", InputActionType.Button, "<Mouse>/leftButton");
+        flipAction = new InputAction("Flip", InputActionType.Button, "<Mouse>/rightButton");
+        flipAction.performed += OnFlip;
+        flipAction.Enable();
         hitAction.performed += OnHit;
         hitAction.Enable();
         
+    }
+
+    public void OnFlip(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+
+            if (!flipped)
+            {
+                racket.SetActive(false);
+                racket = player.transform.Find("RacketFlipped").gameObject;
+                racket.SetActive(true);
+                flipped = true;
+            }
+            else if (flipped)
+            {
+                racket.SetActive(false);
+                racket = player.transform.Find("Racket").gameObject;
+                racket.SetActive(true);
+                flipped = false;
+            }
+        }
     }
 
     public void OnHit(InputAction.CallbackContext context)
@@ -54,20 +87,23 @@ public class PlayerHit : MonoBehaviour
                 if(distance<2.0f)
                 {
                     shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,1.0f,2f);
+                    VolleyManager.instance.AddVolley();
+                    
                 }
                 else if(distance<3.0f)
                 {
                     shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,1.0f,1.5f);
+                    VolleyManager.instance.AddVolley();
+                    
                 }
                 else if (distance <5.0f)
                 {
                     
                     shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,1.0f,1.25f);
+                    VolleyManager.instance.AddVolley();
+                    
                 }
-                else if (distance<6.0f)
-                {
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget();
-                }
+                
                 
                 
 
@@ -91,9 +127,12 @@ public class PlayerHit : MonoBehaviour
     public void OnDisable()
     {
         hitAction.performed -= OnHit;
+        flipAction.performed -= OnFlip;
         
         hitAction.Disable();
+        flipAction.Disable();
     }
+
     // Update is called once per frame
     void Update()
     {
