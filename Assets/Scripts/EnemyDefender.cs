@@ -126,6 +126,7 @@ public class EnemyDefender : MonoBehaviour
             other.GetComponent<ShuttlecockMotion>().NextTarget();
             target.Hide();
             claw.StartSwing();
+            VolleyManager.instance.AddVolley();
         }
     }
 }

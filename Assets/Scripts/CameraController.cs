@@ -64,9 +64,4 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    //void MoveCamera(float x, float y)
-    //{
-    //    Vector3 movementAmount = new Vector3(y, 0, x) * speed * Time.deltaTime;
-    //    transform.Translate(movementAmount);
-    //}
 }
