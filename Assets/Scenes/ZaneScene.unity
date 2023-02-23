@@ -884,7 +884,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 1555737541848239005, guid: 65ca3c5f21187457d8acd1ad7a7ca1e2, type: 3}
-  spawnInterval: 20
+  spawnInterval: 10
+  intervalVariation: 1
+  intervalGrowth: 0.25
+  intervalMin: 0.5
 --- !u!136 &499941759
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2377,7 +2380,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 1555737541848239005, guid: 65ca3c5f21187457d8acd1ad7a7ca1e2, type: 3}
-  spawnInterval: 20
+  spawnInterval: 10
+  intervalVariation: 1
+  intervalGrowth: 0.25
+  intervalMin: 0.5
 --- !u!136 &1642399320
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3101,6 +3107,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 407630079, guid: dfe7b8ecc932a534aabca8d9fefbdc14, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407630079, guid: dfe7b8ecc932a534aabca8d9fefbdc14, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1821446215022788331, guid: dfe7b8ecc932a534aabca8d9fefbdc14, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

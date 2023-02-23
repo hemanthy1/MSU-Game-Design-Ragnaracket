@@ -41,7 +41,7 @@ public class RockThrust : MonoBehaviour
     {
         parabolaAnimation += Time.deltaTime;
 
-        transform.position = MathParabola.Parabola(transform.position, destination, 5, parabolaAnimation / 5);
+        transform.position = MathParabola.Parabola(transform.position, destination, 5, (parabolaAnimation / 2));
 
         //If the transform.position.y is less than a certain threshold, destroy it. 
         if (transform.position.y < -1f)
