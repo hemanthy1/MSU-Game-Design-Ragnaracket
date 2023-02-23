@@ -78,7 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 1555737541848239005, guid: 65ca3c5f21187457d8acd1ad7a7ca1e2, type: 3}
   spawnInterval: 5
-  intervalVariation: 1
+  intervalVariation: 2
   intervalGrowth: 0.25
   intervalMin: 0.5
 --- !u!1 &257736468177496332

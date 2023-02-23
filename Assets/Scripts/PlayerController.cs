@@ -21,9 +21,12 @@ public class PlayerController : MonoBehaviour
 
     private float dashCounter;
     private float dashCoolCounter;
+    private DashIndicator dashIndicator;
 
     private void Start()
     {
+        dashIndicator = GameObject.Find("DashIndicator").GetComponent<DashIndicator>();
+        dashIndicator.SetMax(dashCooldown);
         activeMoveSpeed = speed;
     }
 
@@ -59,6 +62,7 @@ public class PlayerController : MonoBehaviour
         if (dashCoolCounter > 0)
         {
             dashCoolCounter -= Time.deltaTime;
+            dashIndicator.SetValue(dashCooldown - dashCoolCounter);
         }
 
         if (dashCounter > 0)
@@ -81,6 +85,7 @@ public class PlayerController : MonoBehaviour
             {
                 activeMoveSpeed = dashSpeed;
                 dashCounter = dashLength;
+                dashIndicator.Use();
             }
         }
 
