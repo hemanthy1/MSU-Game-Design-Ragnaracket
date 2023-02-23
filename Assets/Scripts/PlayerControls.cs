@@ -71,6 +71,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Super"",
+                    ""type"": ""Button"",
+                    ""id"": ""4525b445-04c3-47f2-a2b6-2b7613eaf437"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -252,12 +261,34 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""5719f34b-fd9c-4582-8617-4d285b647300"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""46985407-7ecf-4d8e-b754-9c71255cd63f"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Flip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b90d7df9-038f-4841-83a4-c40149be271d"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Super"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -273,6 +304,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Movement_Dash = m_Movement.FindAction("Dash", throwIfNotFound: true);
         m_Movement_Hit = m_Movement.FindAction("Hit", throwIfNotFound: true);
         m_Movement_Flip = m_Movement.FindAction("Flip", throwIfNotFound: true);
+        m_Movement_Super = m_Movement.FindAction("Super", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -337,6 +369,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Dash;
     private readonly InputAction m_Movement_Hit;
     private readonly InputAction m_Movement_Flip;
+    private readonly InputAction m_Movement_Super;
     public struct MovementActions
     {
         private @PlayerControls m_Wrapper;
@@ -346,6 +379,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_Movement_Dash;
         public InputAction @Hit => m_Wrapper.m_Movement_Hit;
         public InputAction @Flip => m_Wrapper.m_Movement_Flip;
+        public InputAction @Super => m_Wrapper.m_Movement_Super;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -370,6 +404,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Flip.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnFlip;
                 @Flip.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnFlip;
                 @Flip.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnFlip;
+                @Super.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnSuper;
+                @Super.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnSuper;
+                @Super.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnSuper;
             }
             m_Wrapper.m_MovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -389,6 +426,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Flip.started += instance.OnFlip;
                 @Flip.performed += instance.OnFlip;
                 @Flip.canceled += instance.OnFlip;
+                @Super.started += instance.OnSuper;
+                @Super.performed += instance.OnSuper;
+                @Super.canceled += instance.OnSuper;
             }
         }
     }
@@ -400,5 +440,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnHit(InputAction.CallbackContext context);
         void OnFlip(InputAction.CallbackContext context);
+        void OnSuper(InputAction.CallbackContext context);
     }
 }

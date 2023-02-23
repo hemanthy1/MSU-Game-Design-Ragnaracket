@@ -19,9 +19,15 @@ public class EnemyStamina : MonoBehaviour
 
     private SliderUI staminaBar;
 
+    [SerializeField]
+    private float baseDamage = 5f;
+
+    private ShuttlecockMotion projectile;
+
     // Start is called before the first frame update
     void Start()
     {
+        projectile = GameObject.Find("Shuttlecock").GetComponent<ShuttlecockMotion>();
         //Replace this line with finding the enemy racket
         //enemyStructure = GameObject.Find("Castle");
         enemyStamina = enemyMaxStamina;
@@ -52,7 +58,7 @@ public class EnemyStamina : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        float damage = 5f; //Calculate this later
+        float damage = baseDamage * projectile.GetDamageMultiplier(); //Calculate this later
 
         DoDamageToStamina((float)damage);
     }

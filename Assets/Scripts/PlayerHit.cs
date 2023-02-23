@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 public class PlayerHit : MonoBehaviour
 {
     private InputAction hitAction;
-
     private InputAction flipAction;
+    private InputAction superAction;
     private BoxCollider racketCollider;
     private AudioSource swingSound;
 
@@ -17,6 +17,8 @@ public class PlayerHit : MonoBehaviour
     private GameObject player;
 
     private GameObject shuttlecock;
+
+    private Light superAura;
 
     private bool noSpam=false;
 
@@ -29,10 +31,17 @@ public class PlayerHit : MonoBehaviour
 
     private SliderUI superMeter;
 
-    bool flipped=false;
+    private bool flipped=false;
+
+    private bool superActive = false;
+    [SerializeField]
+    private float superDamageMultiplier = 1.5f;
+    [SerializeField]
+    private float superTimeLimit = 5f;
 
     private void Start()
     {
+        superAura = GetComponent<Light>();
         superMeter = GameObject.Find("SuperMeter").GetComponent<SliderUI>();
         superMeter.SetMax(pointsToSuper);
         swingSound = transform.Find("Audio").Find("Swing").GetComponent<AudioSource>();
@@ -54,7 +63,9 @@ public class PlayerHit : MonoBehaviour
         flipAction.Enable();
         hitAction.performed += OnHit;
         hitAction.Enable();
-        
+        superAction = new InputAction("Super", InputActionType.Button, "<Keyboard>/q");
+        superAction.performed += OnSuper;
+        superAction.Enable();
     }
 
     public void OnFlip(InputAction.CallbackContext context)
@@ -92,20 +103,20 @@ public class PlayerHit : MonoBehaviour
             {
                 if(distance<2.0f)
                 {
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,1.0f,2f);
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, 2f * (superActive ? superDamageMultiplier : 1));
                     VolleyManager.instance.AddVolley();
                     
                 }
                 else if(distance<3.0f)
                 {
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,1.0f,1.5f);
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, 1.5f * (superActive ? superDamageMultiplier : 1));
                     VolleyManager.instance.AddVolley();
                     
                 }
                 else if (distance <5.0f)
                 {
                     
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0,1.0f,1.25f);
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, 1.25f * (superActive ? superDamageMultiplier : 1));
                     VolleyManager.instance.AddVolley();
                     
                 }
@@ -116,10 +127,13 @@ public class PlayerHit : MonoBehaviour
                 if (distance<3.55f)
                 {
                     perfectHits++;
-                    totalPoints += pointsFromPerfectHit;
-                    if (totalPoints > pointsToSuper)
-                        totalPoints = pointsToSuper;
-                    superMeter.UpdateValue(totalPoints);
+                    if (!superActive)
+                    {
+                        totalPoints += pointsFromPerfectHit;
+                        if (totalPoints > pointsToSuper)
+                            totalPoints = pointsToSuper;
+                        superMeter.UpdateValue(totalPoints);
+                    }
                     Debug.Log("Perfect hits: " + perfectHits);
                 }
         }
@@ -137,9 +151,11 @@ public class PlayerHit : MonoBehaviour
     {
         hitAction.performed -= OnHit;
         flipAction.performed -= OnFlip;
+        superAction.performed -= OnSuper;
         
         hitAction.Disable();
         flipAction.Disable();
+        superAction.Disable();
     }
 
     // Update is called once per frame
@@ -160,4 +176,24 @@ public class PlayerHit : MonoBehaviour
         yield return new WaitForSeconds(delay);
     }
 
+    public void OnSuper(InputAction.CallbackContext context)
+    {
+        if (totalPoints >= pointsToSuper)
+        {
+            superActive = true;
+            GetComponent<PlayerController>().ActivateSuper();
+            superMeter.EmptyOverTime(superTimeLimit);
+            totalPoints = 0;
+            superAura.enabled = true;
+
+            Invoke("DeactivateSuper", superTimeLimit);
+        }
+    }
+
+    private void DeactivateSuper()
+    {
+        superActive = false;
+        GetComponent<PlayerController>().DeactivateSuper();
+        superAura.enabled = false;
+    }
 }

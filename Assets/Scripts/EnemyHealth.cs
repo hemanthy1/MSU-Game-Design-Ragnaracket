@@ -18,10 +18,16 @@ public class EnemyHealth : MonoBehaviour
 
     private SliderUI healthBar;
 
+    [SerializeField]
+    private float baseDamage = 5f;
+
+    private ShuttlecockMotion projectile;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        projectile = GameObject.Find("Shuttlecock").GetComponent<ShuttlecockMotion>();
         enemyStructure = GameObject.Find("Castle");
         if (enemyHealth == 0)
         {
@@ -50,7 +56,7 @@ public class EnemyHealth : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        float damage = 5f; //Calculate this later
+        float damage = baseDamage * projectile.GetDamageMultiplier(); //Calculate this later
         //Debug.Log("Hey I'm hitting here");
         DoDamageToHealth(damage);
         VolleyManager.instance.AddVolley();

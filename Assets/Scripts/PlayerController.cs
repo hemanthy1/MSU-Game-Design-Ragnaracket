@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private float dashCoolCounter;
     private DashIndicator dashIndicator;
 
+    private bool superActive = false;
+
     private void Start()
     {
         dashIndicator = GameObject.Find("DashIndicator").GetComponent<DashIndicator>();
@@ -59,7 +61,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         MovePlayer();
-        if (dashCoolCounter > 0)
+        if (!superActive && dashCoolCounter > 0)
         {
             dashCoolCounter -= Time.deltaTime;
             dashIndicator.SetValue(dashCooldown - dashCoolCounter);
@@ -81,11 +83,12 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started)
         {
-            if (dashCoolCounter <= 0 && dashCounter <= 0)
+            if ((superActive || dashCoolCounter <= 0) && dashCounter <= 0)
             {
                 activeMoveSpeed = dashSpeed;
                 dashCounter = dashLength;
-                dashIndicator.Use();
+                if (!superActive)
+                    dashIndicator.Use();
             }
         }
 
@@ -106,21 +109,42 @@ public class PlayerController : MonoBehaviour
         dashAction.Disable();
     }
 
+    // Enable player control
     private void EnableInput()
     {
         GetComponent<PlayerInput>().ActivateInput();
     }
 
+    // Disable player control
     private void DisableInput()
     {
         GetComponent<PlayerInput>().DeactivateInput();
     }
 
+    // Temporarily stun player
     public void Stun()
     {
         Debug.Log("Stun");
         DisableInput();
         GetComponent<PlayerJump>().ForceFall();
         Invoke("EnableInput", stunTime);
+    }
+
+    // Activate super
+    public void ActivateSuper()
+    {
+        superActive = true;
+
+        if (dashCoolCounter > 0)
+        {
+            dashCoolCounter = 0;
+            dashIndicator.SetValue(dashCooldown - dashCoolCounter);
+        }
+    }
+
+    // Deactivate super
+    public void DeactivateSuper()
+    {
+        superActive = false;
     }
 }

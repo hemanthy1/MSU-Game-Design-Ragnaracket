@@ -82,6 +82,9 @@ public class ShuttlecockMotion : MonoBehaviour
     //  1 if setting a min
     //
     //  MUST PASS A NUMBER FOR AIMPOS IF AIMING IS NOT NEGATIVE
+    //
+    //  tempSpeedMult
+    //
     public void NextTarget(int aiming = -1, float aimPos = -1, float tempSpeedMult = 1)
     {
         //ToggleCollider();
@@ -146,5 +149,10 @@ public class ShuttlecockMotion : MonoBehaviour
     {
         ToggleCollider();
         Invoke("ToggleCollider", 0.1f);
+    }
+
+    public float GetDamageMultiplier()
+    {
+        return tempSpeedMultiplier;
     }
 }

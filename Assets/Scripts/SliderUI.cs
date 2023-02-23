@@ -10,6 +10,10 @@ public class SliderUI : MonoBehaviour
     public float lerpSpeed = 0.5f;
     public bool startEmpty = false;
 
+    private bool emptying = false;
+    static float t = 0f;
+    private float emptyTime = 5f;
+
     void Start()
     {
         slider = GetComponent<Slider>();
@@ -18,7 +22,16 @@ public class SliderUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (slider.value != actualVal)
+        if (emptying)
+        {
+            slider.value = Mathf.Lerp(slider.maxValue, 0, t);
+            t += Time.deltaTime / emptyTime;
+            if (t >= 1f)
+            {
+                emptying = false;
+            }
+        }
+        else if (slider.value != actualVal)
         {
             slider.value = Mathf.Lerp(slider.value, actualVal, lerpSpeed);
         }
@@ -43,6 +56,14 @@ public class SliderUI : MonoBehaviour
 
     public void UpdateValue(float newVal)
     {
-        actualVal = newVal;
+        if (!emptying)
+            actualVal = newVal;
+    }
+
+    public void EmptyOverTime(float time)
+    {
+        emptying = true;
+        emptyTime = time;
+        actualVal = 0;
     }
 }
