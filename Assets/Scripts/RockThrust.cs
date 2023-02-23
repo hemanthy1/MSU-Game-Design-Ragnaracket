@@ -16,7 +16,8 @@ public class RockThrust : MonoBehaviour
     private float minZ = -15f;
     private float maxZ = 15f;
 
-    
+    [Tooltip("Makes rock animation faster or slower. The smaller the value, the faster the rock moves.")]
+    public float rockAnimationLength = 3;
 
     Vector3 startPoint;
 
@@ -41,7 +42,7 @@ public class RockThrust : MonoBehaviour
     {
         parabolaAnimation += Time.deltaTime;
 
-        transform.position = MathParabola.Parabola(transform.position, destination, 5, (parabolaAnimation / 2));
+        transform.position = MathParabola.Parabola(transform.position, destination, 15, (parabolaAnimation / rockAnimationLength));
 
         //If the transform.position.y is less than a certain threshold, destroy it. 
         if (transform.position.y < -1f)
