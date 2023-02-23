@@ -21,14 +21,20 @@ public class PlayerHit : MonoBehaviour
     private bool noSpam=false;
 
     private int perfectHits=0;
+    [SerializeField]
+    private int pointsToSuper = 100;
+    [SerializeField]
+    private int pointsFromPerfectHit = 10;
+    private int totalPoints = 0;
 
-    
+    private SliderUI superMeter;
 
     bool flipped=false;
 
     private void Start()
     {
-        
+        superMeter = GameObject.Find("SuperMeter").GetComponent<SliderUI>();
+        superMeter.SetMax(pointsToSuper);
         swingSound = transform.Find("Audio").Find("Swing").GetComponent<AudioSource>();
         player= GameObject.FindWithTag("Player");
         shuttlecock=GameObject.FindWithTag("Shuttlecock");
@@ -110,7 +116,10 @@ public class PlayerHit : MonoBehaviour
                 if (distance<3.55f)
                 {
                     perfectHits++;
-
+                    totalPoints += pointsFromPerfectHit;
+                    if (totalPoints > pointsToSuper)
+                        totalPoints = pointsToSuper;
+                    superMeter.UpdateValue(totalPoints);
                     Debug.Log("Perfect hits: " + perfectHits);
                 }
         }

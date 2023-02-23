@@ -19,14 +19,15 @@ public class SuperMeter : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!full && slider.value == slider.maxValue)
+        if (!full && slider.value >= (slider.maxValue - 0.05))
             ToggleIndicator(true);
-        else if (full && slider.value < slider.maxValue)
+        else if (full && slider.value < (slider.maxValue - 0.05))
             ToggleIndicator(false);
     }
 
     public void ToggleIndicator(bool val)
     {
+        Debug.Log("toggled " + val);
         indicator.SetActive(val);
         full = val;
     }

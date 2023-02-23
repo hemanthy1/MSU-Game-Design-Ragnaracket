@@ -8,6 +8,7 @@ public class SliderUI : MonoBehaviour
     private Slider slider = null;
     private float actualVal;
     public float lerpSpeed = 0.5f;
+    public bool startEmpty = false;
 
     void Start()
     {
@@ -28,8 +29,16 @@ public class SliderUI : MonoBehaviour
         if (slider == null)
             slider = GetComponent<Slider>();
         slider.maxValue = newVal;
-        slider.value = newVal;
-        actualVal = newVal;
+        if (!startEmpty)
+        {
+            slider.value = newVal;
+            actualVal = newVal;
+        }
+        else
+        {
+            slider.value = 0;
+            actualVal = 0;
+        }
     }
 
     public void UpdateValue(float newVal)
