@@ -6,15 +6,41 @@ using UnityEngine;
 public class Catapult : MonoBehaviour
 {
     public GameObject objectToSpawn;
-    public float spawnInterval = 20.0f;
+    private TrebuchetAnimation anim;
+    private Transform launchPoint;
+    public float spawnInterval = 5.0f;
+    public float intervalVariation = 1.0f;
+    public float intervalGrowth = 0.25f;
+    public float intervalMin = 0.5f;
 
     private void Start()
     {
-        InvokeRepeating("SpawnObject", 0.0f, spawnInterval);
+        anim = transform.Find("trebuchet_anim").GetComponent<TrebuchetAnimation>();
+        launchPoint = transform.Find("LaunchPoint");
+        InvokeRepeating("RandomizeInterval", 0.0f, spawnInterval);
+    }
+
+    private void RandomizeInterval()
+    {
+        float variation = Random.Range(0.0f, intervalVariation);
+        Invoke("Throw", intervalVariation);
+    }
+
+    private void Throw()
+    {
+        anim.AnimationStart();
+        Invoke("SpawnObject", 1.8f);
     }
 
     private void SpawnObject()
     {
-        Instantiate(objectToSpawn, transform.position, Quaternion.identity);
+        Instantiate(objectToSpawn, launchPoint.position, Quaternion.identity);
+    }
+
+    public void SpeedUp()
+    {
+        spawnInterval -= intervalGrowth;
+        if (spawnInterval < intervalMin)
+            spawnInterval = intervalMin;
     }
 }

@@ -11,6 +11,7 @@ public class EnemyDefender : MonoBehaviour
     private Vector3 currentVelocity = new Vector3(0, 0, 0);
     private float currentSpeed = 0f;
     private ClawJoint claw;
+    private Transform catapults;
 
     [SerializeField]
     private float maxSpeed = 0.01f;
@@ -27,6 +28,7 @@ public class EnemyDefender : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        catapults = transform.parent.Find("Catapults");
         targets.Add(0, transform.parent.Find("EnemyHome"));
         targets.Add(1, transform.parent.Find("TargetIndicator"));
         targets.Add(3, transform.parent.Find("DisabledHold"));
@@ -127,6 +129,16 @@ public class EnemyDefender : MonoBehaviour
             target.Hide();
             claw.StartSwing();
             VolleyManager.instance.AddVolley();
+
+            UpdateCatapults();
+        }
+    }
+
+    private void UpdateCatapults()
+    {
+        foreach (Transform child in catapults)
+        {
+            child.GetComponent<Catapult>().SpeedUp();
         }
     }
 }

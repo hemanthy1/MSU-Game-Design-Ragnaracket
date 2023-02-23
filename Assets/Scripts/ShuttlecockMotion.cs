@@ -84,6 +84,8 @@ public class ShuttlecockMotion : MonoBehaviour
     //  MUST PASS A NUMBER FOR AIMPOS IF AIMING IS NOT NEGATIVE
     public void NextTarget(int aiming = -1, float aimPos = -1, float tempSpeedMult = 1)
     {
+        //ToggleCollider();
+        FlashCollider();
         tempSpeedMultiplier = tempSpeedMult;
 
         nextTarget++;
@@ -101,6 +103,7 @@ public class ShuttlecockMotion : MonoBehaviour
         CalculateParameters();
         GameObject projection = Instantiate(projectionPrefab, transform.position, Quaternion.identity);
         projection.GetComponent<ShuttlecockProjection>().Initialize(speed, targetPoint, directAxis, normal, midpoint, horizontalCoefficient, verticalCoefficient);
+        //Invoke("ToggleCollider", 0.1f);
     }
 
     public void SetSpeed(float newSpeed)
@@ -132,5 +135,16 @@ public class ShuttlecockMotion : MonoBehaviour
     public void SetMoving(bool newStatus)
     {
         moving = newStatus;
+    }
+
+    private void ToggleCollider()
+    {
+        GetComponent<Collider>().enabled = !GetComponent<Collider>().enabled;
+    }
+
+    public void FlashCollider()
+    {
+        ToggleCollider();
+        Invoke("ToggleCollider", 0.1f);
     }
 }

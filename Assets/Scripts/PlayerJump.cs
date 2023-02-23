@@ -67,4 +67,9 @@ public class PlayerJump : MonoBehaviour
             jumpPressed = true;
         }
     }
+
+    public void ForceFall()
+    {
+        playerVelocity.y = 0;
+    }
 }

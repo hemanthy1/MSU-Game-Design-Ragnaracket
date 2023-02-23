@@ -7,6 +7,7 @@ using static UnityEngine.UI.CanvasScaler;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
+    public float stunTime = 1f;
     private Vector2 move;
 
     //Rigidbody rigid;
@@ -16,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private float activeMoveSpeed;
     public float dashSpeed;
 
-    public float dashLength = 0.5f, dashCooldown = 1f;
+    public float dashLength = 0.1f, dashCooldown = 1f;
 
     private float dashCounter;
     private float dashCoolCounter;
@@ -98,5 +99,23 @@ public class PlayerController : MonoBehaviour
         dashAction.performed -= OnDash;
 
         dashAction.Disable();
+    }
+
+    private void EnableInput()
+    {
+        GetComponent<PlayerInput>().ActivateInput();
+    }
+
+    private void DisableInput()
+    {
+        GetComponent<PlayerInput>().DeactivateInput();
+    }
+
+    public void Stun()
+    {
+        Debug.Log("Stun");
+        DisableInput();
+        GetComponent<PlayerJump>().ForceFall();
+        Invoke("EnableInput", stunTime);
     }
 }

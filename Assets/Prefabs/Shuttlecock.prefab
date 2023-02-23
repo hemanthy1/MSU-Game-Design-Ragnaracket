@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2496990063303636618}
   - component: {fileID: 2496990063303636619}
   - component: {fileID: 5260196166811356974}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shuttlecock
-  m_TagString: Untagged
+  m_TagString: Shuttlecock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,9 +93,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2496990064376684701}
-  m_Layer: 0
+  - component: {fileID: 1685249835164479720}
+  m_Layer: 6
   m_Name: Model
-  m_TagString: Shuttlecock
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,6 +116,20 @@ Transform:
   m_Father: {fileID: 2496990063303636621}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1685249835164479720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496990064376684700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a9367090974f540bad5d1d49367067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reverseSpin: 0
+  rotationSpeed: 3
 --- !u!1 &5056859705397037586
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +141,7 @@ GameObject:
   - component: {fileID: 5577219614047015080}
   - component: {fileID: 8847770231109721869}
   - component: {fileID: 6714145129755765703}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shuttle_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}

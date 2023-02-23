@@ -51,7 +51,14 @@ public class RockThrust : MonoBehaviour
 
     }
 
-
-
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Collide");
+        if (other.tag == "Player")
+        {
+            other.gameObject.GetComponent<PlayerController>().Stun();
+            Destroy(gameObject);
+        }
+    }
 }
 
