@@ -17,13 +17,13 @@ public class Catapult : MonoBehaviour
     {
         anim = transform.Find("trebuchet_anim").GetComponent<TrebuchetAnimation>();
         launchPoint = transform.Find("LaunchPoint");
-        InvokeRepeating("RandomizeInterval", 0.0f, spawnInterval);
+        Invoke("RandomizeInterval", 0.0f);
     }
 
     private void RandomizeInterval()
     {
         float variation = Random.Range(0.0f, intervalVariation);
-        Invoke("Throw", intervalVariation);
+        Invoke("Throw", variation);
     }
 
     private void Throw()
@@ -35,6 +35,7 @@ public class Catapult : MonoBehaviour
     private void SpawnObject()
     {
         Instantiate(objectToSpawn, launchPoint.position, Quaternion.identity);
+        Invoke("RandomizeInterval", spawnInterval);
     }
 
     public void SpeedUp()
