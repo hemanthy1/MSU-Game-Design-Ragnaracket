@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public float timeAlive = 0;
+
     public float enemyHealth;
     public float enemyMaxHealth = 100;
 
@@ -18,8 +20,12 @@ public class EnemyHealth : MonoBehaviour
 
     private SliderUI healthBar;
 
+    public LevelEndUI menuUI;
+
     [SerializeField]
     private float baseDamage = 5f;
+
+    private GameObject player;
 
     private ShuttlecockMotion projectile;
 
@@ -39,6 +45,12 @@ public class EnemyHealth : MonoBehaviour
         enemyCollider = GetComponent<BoxCollider>();
         healthBar = GameObject.Find("HealthBar").GetComponent<SliderUI>();
         healthBar.SetMax(enemyMaxHealth);
+        GameObject.Find("Player");
+    }
+
+    private void Update()
+    {
+        timeAlive += Time.unscaledDeltaTime;
     }
 
     private void DoDamageToHealth(float damage)
@@ -49,6 +61,9 @@ public class EnemyHealth : MonoBehaviour
             enemyHealth = 0;
             Destroy(enemyStructure);
             Destroy(shuttleCock);
+            //Display the win UI
+            menuUI.DisplayLevelUI();
+            player.SetActive(false);
         }
         healthBar.UpdateValue(enemyHealth);
     }

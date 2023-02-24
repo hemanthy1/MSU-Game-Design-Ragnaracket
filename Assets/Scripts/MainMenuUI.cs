@@ -6,12 +6,18 @@ using UnityEngine.SceneManagement;
 public class MainMenuUI : MonoBehaviour
 {
 
-    public GameObject HowToPlay1;
-    public GameObject HowToPlay2;
-    public GameObject HowToPlay3;
-    public GameObject HowToPlay4;
+    //public GameObject HowToPlay1;
+    //public GameObject HowToPlay2;
+    //public GameObject HowToPlay3;
+    //public GameObject HowToPlay4;
     public GameObject ControlsPage;
     public GameObject CreditsPage;
+    public UnityEngine.UI.Text timeText;
+    public UnityEngine.UI.Text missText;
+    public UnityEngine.UI.Text perfectHitText;
+    public EnemyHealth enemyHealth;
+    public LossPlane lossPlane;
+    public PlayerHit playerHit;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,72 +35,72 @@ public class MainMenuUI : MonoBehaviour
         page.SetActive(true);
     }
 
-    public void PageChangeNext(string pageName)
-    {
-        //Checks which button was pressed on a page, denoted by pageName
-        //Depending on which button was pressed, will make different pages appear/disappear
-        if (pageName == "HowToPlay1")
-        {
+    //public void PageChangeNext(string pageName)
+    //{
+    //    //Checks which button was pressed on a page, denoted by pageName
+    //    //Depending on which button was pressed, will make different pages appear/disappear
+    //    if (pageName == "HowToPlay1")
+    //    {
 
-            HowToPlay1.SetActive(false);
-            HowToPlay2.SetActive(true);
-        }
+    //        HowToPlay1.SetActive(false);
+    //        HowToPlay2.SetActive(true);
+    //    }
 
-        else if (pageName == "HowToPlay2")
-        {
+    //    else if (pageName == "HowToPlay2")
+    //    {
 
-            HowToPlay2.SetActive(false);
-            HowToPlay3.SetActive(true);
-        }
+    //        HowToPlay2.SetActive(false);
+    //        HowToPlay3.SetActive(true);
+    //    }
 
-        else if (pageName == "HowToPlay3")
-        {
+    //    else if (pageName == "HowToPlay3")
+    //    {
 
-            HowToPlay3.SetActive(false);
-            HowToPlay4.SetActive(true);
-        }
+    //        HowToPlay3.SetActive(false);
+    //        HowToPlay4.SetActive(true);
+    //    }
 
-        else if (pageName == "HowToPlay4")
-        {
+    //    else if (pageName == "HowToPlay4")
+    //    {
 
-            HowToPlay4.SetActive(false);
-            HowToPlay1.SetActive(true);
-        }
+    //        HowToPlay4.SetActive(false);
+    //        HowToPlay1.SetActive(true);
+    //    }
 
-    }
+    //}
 
-    public void PageChangePrevious(string pageName)
-    {
-        //Checks which button was pressed on a page, denoted by pageName
-        //Depending on which button was pressed, will make different pages appear/disappear
-        if (pageName == "HowToPlay1")
-        {
+    //public void PageChangePrevious(string pageName)
+    //{
+    //    //Checks which button was pressed on a page, denoted by pageName
+    //    //Depending on which button was pressed, will make different pages appear/disappear
+    //    if (pageName == "HowToPlay1")
+    //    {
 
-            HowToPlay1.SetActive(false);
-            HowToPlay4.SetActive(true);
-        }
+    //        HowToPlay1.SetActive(false);
+    //        HowToPlay4.SetActive(true);
+    //    }
 
-        else if (pageName == "HowToPlay2")
-        {
+    //    else if (pageName == "HowToPlay2")
+    //    {
 
-            HowToPlay2.SetActive(false);
-            HowToPlay1.SetActive(true);
-        }
+    //        HowToPlay2.SetActive(false);
+    //        HowToPlay1.SetActive(true);
+    //    }
 
-        else if (pageName == "HowToPlay3")
-        {
+    //    else if (pageName == "HowToPlay3")
+    //    {
 
-            HowToPlay3.SetActive(false);
-            HowToPlay2.SetActive(true);
-        }
+    //        HowToPlay3.SetActive(false);
+    //        HowToPlay2.SetActive(true);
+    //    }
 
-        else if (pageName == "HowToPlay4")
-        {
+    //    else if (pageName == "HowToPlay4")
+    //    {
 
-            HowToPlay4.SetActive(false);
-            HowToPlay3.SetActive(true);
-        }
-    }
+    //        HowToPlay4.SetActive(false);
+    //        HowToPlay3.SetActive(true);
+    //    }
+    //}
 
     public void ClosePage(GameObject page)
     {
@@ -115,5 +121,13 @@ public class MainMenuUI : MonoBehaviour
     {
         Debug.Log("Game Quit");
         Application.Quit();
+    }
+
+    public void DisplayLevelUI()
+    {
+        timeText.text = "Time Taken: " + enemyHealth.timeAlive.ToString() + "seconds";
+        missText.text = "Number of Missed Shuttlecocks: " + lossPlane.shuttleMisses.ToString();
+        perfectHitText.text = "Number of Perfect Hits: " + playerHit.perfectHits.ToString();
+        gameObject.SetActive(true);
     }
 }

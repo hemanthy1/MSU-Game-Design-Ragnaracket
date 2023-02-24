@@ -22,7 +22,7 @@ public class PlayerHit : MonoBehaviour
 
     private bool noSpam=false;
 
-    private int perfectHits=0;
+    public int perfectHits=0;
     [SerializeField]
     private int pointsToSuper = 100;
     [SerializeField]

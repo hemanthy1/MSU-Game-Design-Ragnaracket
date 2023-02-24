@@ -7,6 +7,8 @@ public class LossPlane : MonoBehaviour
     private Transform respawnPoint;
     private TrebuchetAnimation trebuchet;
 
+    public int shuttleMisses = 0;
+
     void Start()
     {
         respawnPoint = transform.Find("RespawnPoint");
@@ -23,6 +25,7 @@ public class LossPlane : MonoBehaviour
             other.GetComponent<ShuttlecockMotion>().SetMoving(false);
             trebuchet.AnimationStart();
             VolleyManager.instance.ResetVolley();
+            shuttleMisses += 1;
         }
     }
 }
