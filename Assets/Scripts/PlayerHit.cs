@@ -18,6 +18,8 @@ public class PlayerHit : MonoBehaviour
 
     private GameObject shuttlecock;
 
+    private DeflectCounter deflectCounter;
+
     private Light superAura;
 
     private bool noSpam=false;
@@ -49,6 +51,7 @@ public class PlayerHit : MonoBehaviour
 
     private void Start()
     {
+        deflectCounter = GameObject.Find("DeflectIndicator").GetComponent<DeflectCounter>();
         superAura = GetComponent<Light>();
         superMeter = GameObject.Find("SuperMeter").GetComponent<SliderUI>();
         superMeter.SetMax(pointsToSuper);
@@ -106,6 +109,8 @@ public class PlayerHit : MonoBehaviour
             
             float distance = Vector3.Distance(player.transform.position, shuttlecock.transform.position);
 
+            bool haveCooldown = true;
+
             GameObject rock = GameObject.FindWithTag("Rock");
             if (rock != null)
             {
@@ -115,7 +120,8 @@ public class PlayerHit : MonoBehaviour
                     Destroy(rock);
                     rockDeflects++;
                     Debug.Log("Rocks deflected: " + rockDeflects);
-
+                    deflectCounter.UpdateCounter(rockDeflects);
+                    haveCooldown = false;
                 }
 
             }
@@ -129,6 +135,7 @@ public class PlayerHit : MonoBehaviour
                 {
                     shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, 2f * (superActive ? superDamageMultiplier : 1+rockDeflects*rockMult));
                     rockDeflects = 0;
+                    deflectCounter.ResetCounter();
                     VolleyManager.instance.AddVolley();
                     
                 }
@@ -136,6 +143,7 @@ public class PlayerHit : MonoBehaviour
                 {
                     shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, 1.5f * (superActive ? superDamageMultiplier : 1+rockDeflects*rockMult));
                     rockDeflects = 0;
+                    deflectCounter.ResetCounter();
                     VolleyManager.instance.AddVolley();
                     
                 }
@@ -144,6 +152,7 @@ public class PlayerHit : MonoBehaviour
                     
                     shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, 1.25f * (superActive ? superDamageMultiplier : 1+rockDeflects*rockMult));
                     rockDeflects = 0;
+                    deflectCounter.ResetCounter();
                     VolleyManager.instance.AddVolley();
                     
                 }
@@ -164,7 +173,7 @@ public class PlayerHit : MonoBehaviour
                     //Debug.Log("Perfect hits: " + perfectHits);
                 }
         }
-            noSpam=true;
+            noSpam=haveCooldown;
 
 
             //racketCollider.enabled = true;
