@@ -52,6 +52,7 @@ public class PlayerJump : MonoBehaviour
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * gravity * -1.0f);
             jumpPressed = false;
+            GetComponent<PlayerController>().MaybePlayGrunt();
         }
 
         playerVelocity.y += gravity * Time.deltaTime;

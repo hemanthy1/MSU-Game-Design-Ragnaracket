@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
                 dashCounter = dashLength;
                 if (!superActive)
                     dashIndicator.Use();
-                PlayRandomGrunt();
+                MaybePlayGrunt();
             }
         }
 
@@ -142,6 +142,8 @@ public class PlayerController : MonoBehaviour
     {
         superActive = true;
 
+        PlayRandomGrunt();
+
         if (dashCoolCounter > 0)
         {
             dashCoolCounter = 0;
@@ -160,5 +162,11 @@ public class PlayerController : MonoBehaviour
     {
         int index = Random.Range(0, 3);
         gruntSounds[index].Play();
+    }
+
+    public void MaybePlayGrunt()
+    {
+        if (Random.Range(0f, 1f) <= 0.33f)
+            PlayRandomGrunt();
     }
 }

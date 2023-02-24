@@ -128,6 +128,7 @@ public class PlayerHit : MonoBehaviour
                         deflectCounter.UpdateCounter(rockDeflects);
                         haveCooldown = false;
                         rockSound.Play();
+                        GetComponent<PlayerController>().MaybePlayGrunt();
                     }
                 }
 
@@ -138,6 +139,7 @@ public class PlayerHit : MonoBehaviour
                     deflectCounter.ResetCounter();
                     VolleyManager.instance.AddVolley();
                     hitSound.Play();
+                    GetComponent<PlayerController>().MaybePlayGrunt();
                 }
                 else if(distance<3.0f)
                 {
@@ -146,6 +148,7 @@ public class PlayerHit : MonoBehaviour
                     deflectCounter.ResetCounter();
                     VolleyManager.instance.AddVolley();
                     hitSound.Play();
+                    GetComponent<PlayerController>().MaybePlayGrunt();
                 }
                 else if (distance <5.0f)
                 {
@@ -155,6 +158,7 @@ public class PlayerHit : MonoBehaviour
                     deflectCounter.ResetCounter();
                     VolleyManager.instance.AddVolley();
                     hitSound.Play();
+                    GetComponent<PlayerController>().MaybePlayGrunt();
                 }
                 
                 
