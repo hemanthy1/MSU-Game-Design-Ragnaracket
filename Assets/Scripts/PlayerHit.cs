@@ -11,6 +11,7 @@ public class PlayerHit : MonoBehaviour
     private InputAction superAction;
     private BoxCollider racketCollider;
     private AudioSource swingSound;
+    private AudioSource rockSound;
 
     private GameObject racket;
 
@@ -56,7 +57,8 @@ public class PlayerHit : MonoBehaviour
         superMeter = GameObject.Find("SuperMeter").GetComponent<SliderUI>();
         superMeter.SetMax(pointsToSuper);
         swingSound = transform.Find("Audio").Find("Swing").GetComponent<AudioSource>();
-        player= GameObject.FindWithTag("Player");
+        rockSound = transform.Find("Audio").Find("RockHit").GetComponent<AudioSource>();
+        player = GameObject.FindWithTag("Player");
         shuttlecock=GameObject.FindWithTag("Shuttlecock");
         if (player != null)
         {
@@ -122,6 +124,7 @@ public class PlayerHit : MonoBehaviour
                     Debug.Log("Rocks deflected: " + rockDeflects);
                     deflectCounter.UpdateCounter(rockDeflects);
                     haveCooldown = false;
+                    rockSound.Play();
                 }
 
             }

@@ -129,6 +129,7 @@ public class EnemyDefender : MonoBehaviour
             target.Hide();
             claw.StartSwing();
             VolleyManager.instance.AddVolley();
+            GetComponent<AudioSource>().Play();
 
             UpdateCatapults();
         }
