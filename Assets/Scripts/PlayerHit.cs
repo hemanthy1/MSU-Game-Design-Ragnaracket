@@ -39,6 +39,10 @@ public class PlayerHit : MonoBehaviour
     [SerializeField]
     private float superTimeLimit = 5f;
 
+    public int rockDeflects=0;
+
+
+
     private void Start()
     {
         superAura = GetComponent<Light>();
@@ -97,6 +101,21 @@ public class PlayerHit : MonoBehaviour
             swingSound.Play();
             
             float distance = Vector3.Distance(player.transform.position, shuttlecock.transform.position);
+
+            GameObject rock = GameObject.FindWithTag("Rock");
+            if (rock != null)
+            {
+                float rockDistance = Vector3.Distance(player.transform.position, rock.transform.position);
+                if (rockDistance < 4.5f)
+                {
+                    Destroy(rock);
+                    rockDeflects++;
+                    Debug.Log("Num rocks deflected: " + rockDeflects);
+                }
+
+            }
+
+
             
 
             if(!noSpam)
@@ -134,7 +153,7 @@ public class PlayerHit : MonoBehaviour
                             totalPoints = pointsToSuper;
                         superMeter.UpdateValue(totalPoints);
                     }
-                    Debug.Log("Perfect hits: " + perfectHits);
+                    //Debug.Log("Perfect hits: " + perfectHits);
                 }
         }
             noSpam=true;

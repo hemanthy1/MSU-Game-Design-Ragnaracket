@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shuttlecock
+  - Rock
   layers:
   - Default
   - TransparentFX

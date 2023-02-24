@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -4689722283398548944}
   m_Layer: 0
   m_Name: Rock
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,3 +108,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86588671ea89cdf4cb695e075ca8426a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rockAnimationLength: 3
