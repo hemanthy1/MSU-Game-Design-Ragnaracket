@@ -1836,6 +1836,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6216277687017917022, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
+      propertyPath: m_Size.x
+      value: 5.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6216277687017917022, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
+      propertyPath: m_Size.y
+      value: 9.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 6216277687017917022, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
+      propertyPath: m_Size.z
+      value: 24.966831
+      objectReference: {fileID: 0}
+    - target: {fileID: 6216277687017917022, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
+      propertyPath: m_Center.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6216277687017917022, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
+      propertyPath: m_Center.z
+      value: -0.016584873
+      objectReference: {fileID: 0}
     - target: {fileID: 8722688182813385541, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
       propertyPath: intervalMin
       value: 0
@@ -2823,6 +2843,10 @@ PrefabInstance:
     - target: {fileID: 2496990063303636618, guid: a282a2667f0366a40bc9e3b7521b0fb9, type: 3}
       propertyPath: speedCap
       value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2496990063303636618, guid: a282a2667f0366a40bc9e3b7521b0fb9, type: 3}
+      propertyPath: targets.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2496990063303636618, guid: a282a2667f0366a40bc9e3b7521b0fb9, type: 3}
       propertyPath: targets.Array.data[0]
