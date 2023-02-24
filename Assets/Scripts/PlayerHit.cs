@@ -12,6 +12,7 @@ public class PlayerHit : MonoBehaviour
     private BoxCollider racketCollider;
     private AudioSource swingSound;
     private AudioSource rockSound;
+    private AudioSource hitSound;
 
     private GameObject racket;
 
@@ -58,6 +59,7 @@ public class PlayerHit : MonoBehaviour
         superMeter.SetMax(pointsToSuper);
         swingSound = transform.Find("Audio").Find("Swing").GetComponent<AudioSource>();
         rockSound = transform.Find("Audio").Find("RockHit").GetComponent<AudioSource>();
+        hitSound = transform.Find("Audio").Find("Hit").GetComponent<AudioSource>();
         player = GameObject.FindWithTag("Player");
         shuttlecock=GameObject.FindWithTag("Shuttlecock");
         if (player != null)
@@ -107,40 +109,35 @@ public class PlayerHit : MonoBehaviour
     {
         if (context.performed)
         {
-            swingSound.Play();
-            
-            float distance = Vector3.Distance(player.transform.position, shuttlecock.transform.position);
-
             bool haveCooldown = true;
-
-            GameObject rock = GameObject.FindWithTag("Rock");
-            if (rock != null)
-            {
-                float rockDistance = Vector3.Distance(player.transform.position, rock.transform.position);
-                if (rockDistance < 4.5f)
-                {
-                    Destroy(rock);
-                    rockDeflects++;
-                    Debug.Log("Rocks deflected: " + rockDeflects);
-                    deflectCounter.UpdateCounter(rockDeflects);
-                    haveCooldown = false;
-                    rockSound.Play();
-                }
-
-            }
-
-
-            
+            float distance = Vector3.Distance(player.transform.position, shuttlecock.transform.position);
 
             if(!noSpam)
             {
-                if(distance<2.0f)
+                swingSound.Play();
+
+                GameObject rock = GameObject.FindWithTag("Rock");
+                if (rock != null)
+                {
+                    float rockDistance = Vector3.Distance(player.transform.position, rock.transform.position);
+                    if (rockDistance < 4.5f)
+                    {
+                        Destroy(rock);
+                        rockDeflects++;
+                        Debug.Log("Rocks deflected: " + rockDeflects);
+                        deflectCounter.UpdateCounter(rockDeflects);
+                        haveCooldown = false;
+                        rockSound.Play();
+                    }
+                }
+
+                if (distance<2.0f)
                 {
                     shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, 2f * (superActive ? superDamageMultiplier : 1+rockDeflects*rockMult));
                     rockDeflects = 0;
                     deflectCounter.ResetCounter();
                     VolleyManager.instance.AddVolley();
-                    
+                    hitSound.Play();
                 }
                 else if(distance<3.0f)
                 {
@@ -148,7 +145,7 @@ public class PlayerHit : MonoBehaviour
                     rockDeflects = 0;
                     deflectCounter.ResetCounter();
                     VolleyManager.instance.AddVolley();
-                    
+                    hitSound.Play();
                 }
                 else if (distance <5.0f)
                 {
@@ -157,7 +154,7 @@ public class PlayerHit : MonoBehaviour
                     rockDeflects = 0;
                     deflectCounter.ResetCounter();
                     VolleyManager.instance.AddVolley();
-                    
+                    hitSound.Play();
                 }
                 
                 
@@ -175,7 +172,7 @@ public class PlayerHit : MonoBehaviour
                     }
                     //Debug.Log("Perfect hits: " + perfectHits);
                 }
-        }
+            }
             noSpam=haveCooldown;
 
 

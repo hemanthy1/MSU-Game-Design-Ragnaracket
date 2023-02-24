@@ -26,10 +26,12 @@ public class PlayerController : MonoBehaviour
     private bool superActive = false;
 
     private AudioSource[] gruntSounds;
+    private AudioSource stunSound;
 
     private void Start()
     {
         gruntSounds = transform.Find("Audio").Find("Grunts").gameObject.GetComponentsInChildren<AudioSource>();
+        stunSound = transform.Find("Audio").Find("Stun").GetComponent<AudioSource>();
         dashIndicator = GameObject.Find("DashIndicator").GetComponent<DashIndicator>();
         dashIndicator.SetMax(dashCooldown);
         activeMoveSpeed = speed;
@@ -132,6 +134,7 @@ public class PlayerController : MonoBehaviour
         DisableInput();
         GetComponent<PlayerJump>().ForceFall();
         Invoke("EnableInput", stunTime);
+        stunSound.Play();
     }
 
     // Activate super

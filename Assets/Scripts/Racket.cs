@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Racket : MonoBehaviour
 {
-    private AudioSource hitSound;
+    //private AudioSource hitSound;
     // Start is called before the first frame update
     void Start()
     {
-        hitSound = GetComponent<AudioSource>();
+        //hitSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -16,7 +16,7 @@ public class Racket : MonoBehaviour
     {
         if (other.tag == "Shuttlecock")
         {
-            hitSound.Play();
+            //hitSound.Play();
             other.GetComponent<ShuttlecockMotion>().NextTarget();
             GetComponent<Collider>().enabled = false;
             VolleyManager.instance.AddVolley();
