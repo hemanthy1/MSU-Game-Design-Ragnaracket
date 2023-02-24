@@ -25,8 +25,11 @@ public class PlayerController : MonoBehaviour
 
     private bool superActive = false;
 
+    private AudioSource[] gruntSounds;
+
     private void Start()
     {
+        gruntSounds = transform.Find("Audio").Find("Grunts").gameObject.GetComponentsInChildren<AudioSource>();
         dashIndicator = GameObject.Find("DashIndicator").GetComponent<DashIndicator>();
         dashIndicator.SetMax(dashCooldown);
         activeMoveSpeed = speed;
@@ -89,6 +92,7 @@ public class PlayerController : MonoBehaviour
                 dashCounter = dashLength;
                 if (!superActive)
                     dashIndicator.Use();
+                PlayRandomGrunt();
             }
         }
 
@@ -146,5 +150,12 @@ public class PlayerController : MonoBehaviour
     public void DeactivateSuper()
     {
         superActive = false;
+    }
+
+    // Play random grunt sound
+    public void PlayRandomGrunt()
+    {
+        int index = Random.Range(0, 3);
+        gruntSounds[index].Play();
     }
 }
