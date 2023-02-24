@@ -39,7 +39,11 @@ public class PlayerHit : MonoBehaviour
     [SerializeField]
     private float superTimeLimit = 5f;
 
-    public int rockDeflects=0;
+    private int rockDeflects=0;
+
+    public float rockMult=0.25f;
+
+
 
 
 
@@ -110,7 +114,8 @@ public class PlayerHit : MonoBehaviour
                 {
                     Destroy(rock);
                     rockDeflects++;
-                    Debug.Log("Num rocks deflected: " + rockDeflects);
+                    Debug.Log("Rocks deflected: " + rockDeflects);
+
                 }
 
             }
@@ -122,20 +127,23 @@ public class PlayerHit : MonoBehaviour
             {
                 if(distance<2.0f)
                 {
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, 2f * (superActive ? superDamageMultiplier : 1));
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, 2f * (superActive ? superDamageMultiplier : 1+rockDeflects*rockMult));
+                    rockDeflects = 0;
                     VolleyManager.instance.AddVolley();
                     
                 }
                 else if(distance<3.0f)
                 {
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, 1.5f * (superActive ? superDamageMultiplier : 1));
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, 1.5f * (superActive ? superDamageMultiplier : 1+rockDeflects*rockMult));
+                    rockDeflects = 0;
                     VolleyManager.instance.AddVolley();
                     
                 }
                 else if (distance <5.0f)
                 {
                     
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, 1.25f * (superActive ? superDamageMultiplier : 1));
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, 1.25f * (superActive ? superDamageMultiplier : 1+rockDeflects*rockMult));
+                    rockDeflects = 0;
                     VolleyManager.instance.AddVolley();
                     
                 }
