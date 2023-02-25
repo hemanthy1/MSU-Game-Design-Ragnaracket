@@ -41,6 +41,7 @@ public class PlayerJump : MonoBehaviour
         if (isGrounded)
         {
             playerVelocity.y = 0.0f;
+            GetComponent<PlayerController>().AnimLand();
         }
 
         if (isJumpReleased && playerVelocity.y > 0.0f)
@@ -53,6 +54,7 @@ public class PlayerJump : MonoBehaviour
             playerVelocity.y += Mathf.Sqrt(jumpHeight * gravity * -1.0f);
             jumpPressed = false;
             GetComponent<PlayerController>().MaybePlayGrunt();
+            GetComponent<PlayerController>().AnimJump();
         }
 
         playerVelocity.y += gravity * Time.deltaTime;

@@ -28,8 +28,11 @@ public class PlayerController : MonoBehaviour
     private AudioSource[] gruntSounds;
     private AudioSource stunSound;
 
+    private Animator anim;
+
     private void Start()
     {
+        anim = transform.Find("kratos_anim").GetComponent<Animator>();
         gruntSounds = transform.Find("Audio").Find("Grunts").gameObject.GetComponentsInChildren<AudioSource>();
         stunSound = transform.Find("Audio").Find("Stun").GetComponent<AudioSource>();
         dashIndicator = GameObject.Find("DashIndicator").GetComponent<DashIndicator>();
@@ -52,6 +55,7 @@ public class PlayerController : MonoBehaviour
     {
 
         Vector3 movement = new Vector3(0f, 0f, move.x);
+        AnimMoving(move.x > 0.1f || move.x < -0.1f);
 
         transform.Translate(movement * activeMoveSpeed * Time.deltaTime, Space.World);
 
@@ -95,6 +99,7 @@ public class PlayerController : MonoBehaviour
                 if (!superActive)
                     dashIndicator.Use();
                 MaybePlayGrunt();
+                AnimDash();
             }
         }
 
@@ -168,5 +173,44 @@ public class PlayerController : MonoBehaviour
     {
         if (Random.Range(0f, 1f) <= 0.33f)
             PlayRandomGrunt();
+    }
+
+    //
+    // Animator functions
+    //
+
+    public void AnimJump()
+    {
+        anim.SetBool("InAir", true);
+    }
+
+    public void AnimLand()
+    {
+        anim.SetBool("InAir", false);
+    }
+
+    public void AnimDash()
+    {
+        anim.SetTrigger("Dash");
+    }
+
+    public void AnimRage()
+    {
+        anim.SetTrigger("Enrage");
+    }
+
+    public void AnimHit()
+    {
+        anim.SetTrigger("Hit");
+    }
+
+    public void AnimMoving(bool val)
+    {
+        anim.SetBool("Moving", val);
+    }
+
+    public void AnimLeft(bool val)
+    {
+        anim.SetBool("LeftHand", val);
     }
 }

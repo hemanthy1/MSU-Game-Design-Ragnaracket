@@ -15,6 +15,8 @@ public class PlayerHit : MonoBehaviour
     private AudioSource hitSound;
 
     private GameObject racket;
+    private GameObject racketModel;
+    private GameObject racketModelFlipped;
 
     private GameObject player;
 
@@ -66,7 +68,9 @@ public class PlayerHit : MonoBehaviour
         {
             racket = player.transform.Find("Racket").gameObject;
             racketCollider = racket.GetComponent<BoxCollider>();
-            
+            racketModel = GameObject.Find("AxModel").gameObject;
+            racketModelFlipped = GameObject.Find("AxModelFlipped").gameObject;
+            racketModelFlipped.SetActive(false);
         }
        
     }
@@ -91,16 +95,28 @@ public class PlayerHit : MonoBehaviour
             if (!flipped)
             {
                 racket.SetActive(false);
-                racket = player.transform.Find("RacketFlipped").gameObject;
+                racket = transform.Find("RacketFlipped").gameObject;
                 racket.SetActive(true);
+
+                racketModel.SetActive(false);
+                racketModelFlipped.SetActive(true);
+
                 flipped = true;
+
+                GetComponent<PlayerController>().AnimLeft(true);
             }
             else if (flipped)
             {
                 racket.SetActive(false);
-                racket = player.transform.Find("Racket").gameObject;
+                racket = transform.Find("Racket").gameObject;
                 racket.SetActive(true);
+
+                racketModelFlipped.SetActive(false);
+                racketModel.SetActive(true);
+
                 flipped = false;
+
+                GetComponent<PlayerController>().AnimLeft(false);
             }
         }
     }
@@ -109,12 +125,14 @@ public class PlayerHit : MonoBehaviour
     {
         if (context.performed)
         {
+            
             bool haveCooldown = true;
             float distance = Vector3.Distance(player.transform.position, shuttlecock.transform.position);
 
             if(!noSpam)
             {
                 swingSound.Play();
+                GetComponent<PlayerController>().AnimHit();
 
                 GameObject rock = GameObject.FindWithTag("Rock");
                 if (rock != null)
@@ -225,6 +243,7 @@ public class PlayerHit : MonoBehaviour
             superMeter.EmptyOverTime(superTimeLimit);
             totalPoints = 0;
             superAura.enabled = true;
+            GetComponent<PlayerController>().AnimRage();
 
             Invoke("DeactivateSuper", superTimeLimit);
         }
