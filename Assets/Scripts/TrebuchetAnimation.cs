@@ -5,6 +5,7 @@ using UnityEngine;
 public class TrebuchetAnimation : MonoBehaviour
 {
     private MeshRenderer payloadVisual;
+    private AudioSource sound;
     private Animator anim;
     [SerializeField]
     private bool launchingShuttlecock = false;
@@ -17,6 +18,7 @@ public class TrebuchetAnimation : MonoBehaviour
 
     void Start()
     {
+        sound = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         payloadVisual = transform.Find("Armature").Find("slingIK").Find("Payload").GetComponent<MeshRenderer>();
         if (launchOnStart)
@@ -56,5 +58,6 @@ public class TrebuchetAnimation : MonoBehaviour
     public void HidePayload()
     {
         payloadVisual.enabled = false;
+        sound.Play();
     }
 }
