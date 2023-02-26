@@ -109,6 +109,7 @@ public class MainMenuUI : MonoBehaviour
     public void GoToGame()
     {
         SceneManager.LoadScene("AdamScene2");
+        Debug.Log("Load main game");
     }
 
     public void QuitGame()
