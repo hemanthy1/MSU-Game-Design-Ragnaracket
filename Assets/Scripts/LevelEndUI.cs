@@ -43,7 +43,7 @@ public class LevelEndUI : MonoBehaviour
 
     public void GoToGame()
     {
-        SceneManager.LoadScene("ZaneScene");
+        SceneManager.LoadScene("AdamScene2");
     }
 
 

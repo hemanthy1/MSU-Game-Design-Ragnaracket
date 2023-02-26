@@ -45,7 +45,7 @@ public class EnemyHealth : MonoBehaviour
         enemyCollider = GetComponent<BoxCollider>();
         healthBar = GameObject.Find("HealthBar").GetComponent<SliderUI>();
         healthBar.SetMax(enemyMaxHealth);
-        GameObject.Find("Player");
+        player = GameObject.Find("Player");
     }
 
     private void Update()
@@ -59,11 +59,12 @@ public class EnemyHealth : MonoBehaviour
         if (enemyHealth <= 0)
         {
             enemyHealth = 0;
-            Destroy(enemyStructure);
-            Destroy(shuttleCock);
+            enemyStructure.SetActive(false);
+            shuttleCock.SetActive(false);
             //Display the win UI
             menuUI.DisplayLevelUI();
-            player.SetActive(false);
+            //player.SetActive(false);
+            
         }
         healthBar.UpdateValue(enemyHealth);
     }

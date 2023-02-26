@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -626,6 +626,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254227644}
   m_Mesh: {fileID: -8242813347844073239, guid: f1c5323a6e501dd45a9345b2184ad26c, type: 3}
+--- !u!223 &284278028 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 1892886528, guid: dfe7b8ecc932a534aabca8d9fefbdc14, type: 3}
+  m_PrefabInstance: {fileID: 1821446215365688949}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &294190770
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,6 +1081,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465978548}
   m_Mesh: {fileID: -2984368477382809191, guid: f1c5323a6e501dd45a9345b2184ad26c, type: 3}
+--- !u!114 &470952063 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2228543683932254115, guid: dfe7b8ecc932a534aabca8d9fefbdc14, type: 3}
+  m_PrefabInstance: {fileID: 1821446215365688949}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &473799782
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1340,6 +1356,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0de82342062cda4cb682f41549c9a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &620058601 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 241578676483985204, guid: dfe7b8ecc932a534aabca8d9fefbdc14, type: 3}
+  m_PrefabInstance: {fileID: 1821446215365688949}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &640736825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1585,6 +1612,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717434483}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &739647594 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1821446215237263069, guid: dfe7b8ecc932a534aabca8d9fefbdc14, type: 3}
+  m_PrefabInstance: {fileID: 1821446215365688949}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &739647600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739647594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67139f95e6e8edd4caff97bc31428001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeText: {fileID: 470952063}
+  missText: {fileID: 620058601}
+  perfectHitText: {fileID: 1142896651}
+  enemyHealth: {fileID: 1622331524}
+  lossPlane: {fileID: 1474656006}
+  playerHit: {fileID: 1356975430}
+  levelUI: {fileID: 284278028}
 --- !u!1 &827932790 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 386893370080697132, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
@@ -1970,6 +2021,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8234459415137304119, guid: fe85a807ccc7b7a448b2ed1c932a7307, type: 3}
   m_PrefabInstance: {fileID: 1123807837}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1142896651 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7755204738423118465, guid: dfe7b8ecc932a534aabca8d9fefbdc14, type: 3}
+  m_PrefabInstance: {fileID: 1821446215365688949}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1275748873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2237,6 +2299,18 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3331733199130986674, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
+      propertyPath: menuUI
+      value: 
+      objectReference: {fileID: 739647600}
+    - target: {fileID: 3331733199130986674, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
+      propertyPath: enemyHealth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3331733199130986674, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
+      propertyPath: enemyMaxHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6216277687017917016, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
       propertyPath: m_Name
       value: DefenderPlane
@@ -2355,6 +2429,17 @@ MonoBehaviour:
   swingAngle: 60
   swingSpeed: 0.05
   tolerance: 5
+--- !u!114 &1356975430 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1537589692, guid: 88c63f26b39ac674ab85c60f4a0df231, type: 3}
+  m_PrefabInstance: {fileID: 1816609885}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e542aa3d25c404a6fa2cec8d740b6e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1360782847 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8338446882161584227, guid: dfe7b8ecc932a534aabca8d9fefbdc14, type: 3}
@@ -2721,6 +2806,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473286248}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1474656006 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7868669906940755999, guid: 085cbf642de582e49b5e4ceba8f6cb44, type: 3}
+  m_PrefabInstance: {fileID: 473799782}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5adfbc1d755b44fa6e65e64b324dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1481299704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2916,6 +3012,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3609382025989560997, guid: 6fbb61a7f10880a4ba2a8a569f5eb53a, type: 3}
   m_PrefabInstance: {fileID: 1275748873}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1622331524 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3331733199130986674, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
+  m_PrefabInstance: {fileID: 1347895782}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee56360f89ab9e458ac58df28a7ea63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1661928706
 GameObject:
   m_ObjectHideFlags: 0
@@ -4171,6 +4278,18 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5757504325242167719, guid: dfe7b8ecc932a534aabca8d9fefbdc14, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 739647600}
+    - target: {fileID: 5757504325242167719, guid: dfe7b8ecc932a534aabca8d9fefbdc14, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5757504325242167719, guid: dfe7b8ecc932a534aabca8d9fefbdc14, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelEndUI, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6120953468909650362, guid: dfe7b8ecc932a534aabca8d9fefbdc14, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -4191,5 +4310,6 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 54871093533746059, guid: dfe7b8ecc932a534aabca8d9fefbdc14, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dfe7b8ecc932a534aabca8d9fefbdc14, type: 3}
