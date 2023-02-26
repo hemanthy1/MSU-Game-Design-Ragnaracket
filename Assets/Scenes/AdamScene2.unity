@@ -600,7 +600,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &322146962
 PrefabInstance:
@@ -2119,7 +2119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3331733199130986674, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
       propertyPath: enemyMaxHealth
-      value: 2
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6216277687017917016, guid: 11d00ad2a4805de488de700c89006ca1, type: 3}
       propertyPath: m_Name
