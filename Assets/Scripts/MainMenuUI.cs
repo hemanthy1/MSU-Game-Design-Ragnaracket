@@ -12,12 +12,6 @@ public class MainMenuUI : MonoBehaviour
     //public GameObject HowToPlay4;
     public GameObject ControlsPage;
     public GameObject CreditsPage;
-    public UnityEngine.UI.Text timeText;
-    public UnityEngine.UI.Text missText;
-    public UnityEngine.UI.Text perfectHitText;
-    public EnemyHealth enemyHealth;
-    public LossPlane lossPlane;
-    public PlayerHit playerHit;
     // Start is called before the first frame update
     void Start()
     {
@@ -114,7 +108,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void GoToGame()
     {
-        SceneManager.LoadScene("ZaneScene");
+        SceneManager.LoadScene("AdamScene2");
     }
 
     public void QuitGame()
@@ -123,11 +117,4 @@ public class MainMenuUI : MonoBehaviour
         Application.Quit();
     }
 
-    public void DisplayLevelUI()
-    {
-        timeText.text = "Time Taken: " + enemyHealth.timeAlive.ToString() + "seconds";
-        missText.text = "Number of Missed Shuttlecocks: " + lossPlane.shuttleMisses.ToString();
-        perfectHitText.text = "Number of Perfect Hits: " + playerHit.perfectHits.ToString();
-        gameObject.SetActive(true);
-    }
 }
