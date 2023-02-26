@@ -701,8 +701,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6216277687017917017}
   - component: {fileID: 6216277687017917022}
-  - component: {fileID: 6216277687017917023}
   - component: {fileID: 3331733199130986674}
+  - component: {fileID: 6216277687017917023}
   m_Layer: 0
   m_Name: DefenderPlane
   m_TagString: Untagged
@@ -742,6 +742,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 10, z: 25}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3331733199130986674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6216277687017917016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee56360f89ab9e458ac58df28a7ea63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeAlive: 0
+  enemyHealth: 0
+  enemyMaxHealth: 50
+  menuUI: {fileID: 0}
+  baseDamage: 5
 --- !u!114 &6216277687017917023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -755,20 +772,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoVolley: 1
---- !u!114 &3331733199130986674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6216277687017917016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ee56360f89ab9e458ac58df28a7ea63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyHealth: 0
-  enemyMaxHealth: 50
 --- !u!1 &6648869686252877945
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,8 +876,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6991257244266174129}
-  - component: {fileID: 6991257244266174126}
   - component: {fileID: 6762650448576975251}
+  - component: {fileID: 6991257244266174126}
   - component: {fileID: 1830572565}
   m_Layer: 0
   m_Name: EnemyDefender
@@ -899,6 +902,21 @@ Transform:
   m_Father: {fileID: 6216277687017917017}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6762650448576975251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6991257244266174128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28f7afedb943a334eada951d84bf361e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyStamina: 0
+  enemyMaxStamina: 30
+  baseDamage: 5
 --- !u!114 &6991257244266174126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -915,20 +933,6 @@ MonoBehaviour:
   accel: 0.05
   tolerance: 0.5
   regenerationTime: 5
---- !u!114 &6762650448576975251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6991257244266174128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28f7afedb943a334eada951d84bf361e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyStamina: 0
-  enemyMaxStamina: 30
 --- !u!65 &1830572565
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -152,7 +152,9 @@ public class PlayerHit : MonoBehaviour
 
                 if (distance<2.0f)
                 {
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, 2f * (superActive ? superDamageMultiplier : 1) + Mathf.Max(1, rockDeflects * rockMult));
+                    float damage = 2f * (superActive ? superDamageMultiplier : 1) + Mathf.Max(1, rockDeflects * rockMult);
+                    Debug.Log("Multiplier: " + damage);
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, damage);
                     rockDeflects = 0;
                     deflectCounter.ResetCounter();
                     VolleyManager.instance.AddVolley();
@@ -161,7 +163,9 @@ public class PlayerHit : MonoBehaviour
                 }
                 else if(distance<3.0f)
                 {
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, 1.5f * (superActive ? superDamageMultiplier : 1) + Mathf.Max(1, rockDeflects * rockMult));
+                    float damage = 1.5f * (superActive ? superDamageMultiplier : 1) + Mathf.Max(1, rockDeflects * rockMult);
+                    Debug.Log("Multiplier: " + damage);
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, damage);
                     rockDeflects = 0;
                     deflectCounter.ResetCounter();
                     VolleyManager.instance.AddVolley();
@@ -170,8 +174,9 @@ public class PlayerHit : MonoBehaviour
                 }
                 else if (distance <5.0f)
                 {
-                    
-                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, 1.25f * (superActive ? superDamageMultiplier : 1) * Mathf.Max(1, rockDeflects * rockMult));
+                    float damage = 1.25f * (superActive ? superDamageMultiplier : 1) * Mathf.Max(1, rockDeflects * rockMult);
+                    Debug.Log("Multiplier: " + damage);
+                    shuttlecock.GetComponent<ShuttlecockMotion>().NextTarget(0, 1.0f, damage);
                     rockDeflects = 0;
                     deflectCounter.ResetCounter();
                     VolleyManager.instance.AddVolley();

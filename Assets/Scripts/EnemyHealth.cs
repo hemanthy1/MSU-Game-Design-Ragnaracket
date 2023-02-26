@@ -74,6 +74,7 @@ public class EnemyHealth : MonoBehaviour
         float damage = baseDamage * projectile.GetDamageMultiplier(); //Calculate this later
         //Debug.Log("Hey I'm hitting here");
         DoDamageToHealth(damage);
+        Debug.Log("Damage taken: " + damage);
         VolleyManager.instance.AddVolley();
     }
 }
