@@ -13,6 +13,9 @@ public class ClawJoint : MonoBehaviour
     private Quaternion baseAngle;
     private Quaternion targetAngle;
 
+    private float t = 0f;
+    public float swingTime = 0.5f;
+
     void Start()
     {
         baseAngle = transform.rotation;
@@ -22,29 +25,29 @@ public class ClawJoint : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (mode == 0)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetAngle, swingSpeed);
+            transform.rotation = Quaternion.Lerp(baseAngle, targetAngle, t);
             //Debug.Log("Lerp " + transform.rotation.eulerAngles.z + " and " + targetAngle + ":\n" + Mathf.Lerp(transform.rotation.eulerAngles.z, targetAngle, swingSpeed));
-            if (Mathf.Abs(transform.rotation.eulerAngles.z - targetAngle.eulerAngles.z) <= tolerance)
+            t += Time.deltaTime / swingTime;
+            if (t >= 1)
             {
                 //Debug.Log("swing forward finished");
                 mode = 1;
-            }
-            else
-            {
-                //Debug.Log("angle: " + transform.rotation.eulerAngles + "\ntarget: " + targetAngle);
+                t = 0;
             }
         }
         else if (mode == 1)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, baseAngle, swingSpeed);
-            if (Mathf.Abs(transform.rotation.eulerAngles.z - baseAngle.eulerAngles.z) <= tolerance)
+            transform.rotation = Quaternion.Slerp(targetAngle, baseAngle, t);
+            t += Time.deltaTime / swingTime;
+            if (t >= 1)
             {
                 //Debug.Log("swing backward finished");
                 mode = -1;
+                t = 0;
             }
         }
     }
@@ -53,5 +56,6 @@ public class ClawJoint : MonoBehaviour
     {
         transform.rotation = baseAngle;
         mode = 0;
+        t = 0;
     }
 }

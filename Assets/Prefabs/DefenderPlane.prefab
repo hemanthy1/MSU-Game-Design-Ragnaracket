@@ -216,6 +216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1824581128}
+  - component: {fileID: 5165308878472321444}
   m_Layer: 0
   m_Name: ClawJoint
   m_TagString: Untagged
@@ -238,6 +239,22 @@ Transform:
   m_Father: {fileID: 1883120299}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -25.303}
+--- !u!114 &5165308878472321444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824581127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f133d78716f28543a05318a909991ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swingAngle: 30
+  swingSpeed: 0.05
+  tolerance: 5
+  swingTime: 0.25
 --- !u!1 &1883120298
 GameObject:
   m_ObjectHideFlags: 0
